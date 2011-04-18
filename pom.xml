@@ -43,6 +43,7 @@
     <groupId>org.jahia.modules</groupId>
     <artifactId>forum</artifactId>
     <name>Jahia Forum</name>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <description>These are the custom templates (jahiaForum) for running on a Jahia server.</description>
