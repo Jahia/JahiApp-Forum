@@ -24,7 +24,7 @@
 <c:choose>
     <c:when test="${empty createdBy}">
         <jcr:nodeProperty node="${currentNode}" name="jcr:createdBy" var="createdBy"/>
-        <jcr:node var="userNode" path="${functions:lookupUser(createdBy.string).localPath"/>
+        <jcr:node var="userNode" path="${functions:lookupUser(createdBy.string).localPath}"/>
         <jcr:sql var="numberOfPostsQuery"
                  sql="select [jcr:uuid] from [jnt:post] as p where p.[jcr:createdBy] = '${createdBy.string}'"/>
     </c:when>
