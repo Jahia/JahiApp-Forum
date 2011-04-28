@@ -73,7 +73,7 @@ public class AddTopic extends Action {
             node = node.addNode(JCRContentUtils.generateNodeName(topicTitle, 32), "jnt:topic");
             node.setProperty("topicSubject",topicTitle);
         }
-        JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post","");
+        JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post","",false);
 
         if (!session.getUser().getUsername().equals(Constants.GUEST_USERNAME)) {
             List<String> roles = Arrays.asList("owner");
