@@ -39,10 +39,10 @@
     <template:tokenizedForm>
         <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
               id="jahia-forum-post-delete-${currentNode.UUID}">
-            <input type="hidden" name="redirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
+            <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                 <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-            <input type="hidden" name="newNodeOutputFormat" value="html"/>
-            <input type="hidden" name="methodToCall" value="delete"/>
+            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+            <input type="hidden" name="jcrMethodToCall" value="delete"/>
         </form>
     </template:tokenizedForm>
 </c:if>
@@ -51,10 +51,10 @@
     <template:tokenizedForm>
         <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
               id="jahia-forum-post-moderate-${currentNode.UUID}">
-            <input type="hidden" name="redirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
+            <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                 <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-            <input type="hidden" name="newNodeOutputFormat" value="html"/>
-            <input type="hidden" name="methodToCall" value="put"/>
+            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+            <input type="hidden" name="jcrMethodToCall" value="put"/>
             <input type="hidden" name="moderated" value="true"/>
         </form>
     </template:tokenizedForm>

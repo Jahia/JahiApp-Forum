@@ -29,7 +29,7 @@
         $('.timestamp').cuteTime({ refresh: 60000 });
 
         $(".editablePost").editable(function (value, settings) {
-            var data = {'methodToCall':'put'};
+            var data = {'jcrMethodToCall':'put'};
             var submitId = $(this).attr('jcr:id');
             data[submitId] = value;
             $.post($(this).attr('jcr:url'), data, null, "json");

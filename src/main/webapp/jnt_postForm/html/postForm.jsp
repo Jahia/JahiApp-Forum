@@ -53,11 +53,11 @@
 </c:if>
 <template:tokenizedForm>
     <form action="<c:url value='${url.base}${linked}.addTopic.do'/>" method="post" name="newTopicForm" id="newTopicForm">
-        <input type="hidden" name="nodeType" value="jnt:post"/>
-        <input type="hidden" name="redirectTo"
+        <input type="hidden" name="jcrNodeType" value="jnt:post"/>
+        <input type="hidden" name="jcrRedirectTo"
                value="<c:url value='${url.base}${renderContext.mainResource.node.path}.${renderContext.mainResource.template}'/>"/>
-        <input type="hidden" name="newNodeOutputFormat" value="html"/>
-        <input type="hidden" name="resourceID" value="${currentNode.identifier}"/>
+        <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+        <input type="hidden" name="jcrResourceID" value="${currentNode.identifier}"/>
         <input type="hidden" name="jcr:mixinTypes" value="jmix:rating"/>
         <c:if test="${not empty moderated}">
             <input type="hidden" name="jcr:mixinTypes" value="jmix:moderated"/>
@@ -117,7 +117,7 @@
                             <c:if test="${not empty sessionScope.formError}">
                                 <label class="error">${sessionScope.formError}</label>
                             </c:if>
-                            <input type="text" id="newTopic_captcha" name="captcha"/>
+                            <input type="text" id="newTopic_captcha" name="jcrCaptcha"/>
                         </p>
                     </c:if>
                     <p class="forum_button">

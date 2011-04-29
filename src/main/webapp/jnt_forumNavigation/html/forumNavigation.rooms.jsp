@@ -33,11 +33,11 @@
                 <template:tokenizedForm>
                     <form action="<c:url value='${url.base}${room.path}'/>" method="post"
                           id="jahia-forum-room-delete-${room.identifier}">
-                        <input type="hidden" name="redirectTo"
+                        <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                             <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-                        <input type="hidden" name="newNodeOutputFormat" value="html"/>
-                        <input type="hidden" name="methodToCall" value="delete"/>
+                        <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                        <input type="hidden" name="jcrMethodToCall" value="delete"/>
                     </form>
                 </template:tokenizedForm>
             </c:if>
@@ -45,11 +45,11 @@
                 <template:tokenizedForm>
                     <form action="<c:url value='${url.base}${room.path}'/>" method="post"
                           id="jahia-forum-room-moderate-${room.identifier}">
-                        <input type="hidden" name="redirectTo"
+                        <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                             <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-                        <input type="hidden" name="newNodeOutputFormat" value="html"/>
-                        <input type="hidden" name="methodToCall" value="put"/>
+                        <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                        <input type="hidden" name="jcrMethodToCall" value="put"/>
                         <input type="hidden" name="jcr:mixinTypes" value="jmix:moderated"/>
                     </form>
                 </template:tokenizedForm>
@@ -58,12 +58,12 @@
                 <template:tokenizedForm>
                     <form action="<c:url value='${url.base}${room.path}'/>" method="post"
                           id="jahia-forum-room-unmoderate-${room.identifier}">
-                        <input type="hidden" name="redirectTo"
+                        <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                             <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-                        <input type="hidden" name="newNodeOutputFormat" value="html"/>
-                        <input type="hidden" name="methodToCall" value="put"/>
-                        <input type="hidden" name="removeMixin" value="jmix:moderated"/>
+                        <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                        <input type="hidden" name="jcrMethodToCall" value="put"/>
+                        <input type="hidden" name="jcrRemoveMixin" value="jmix:moderated"/>
                     </form>
                 </template:tokenizedForm>
             </c:if>
@@ -136,11 +136,11 @@
                                     <template:tokenizedForm>
                                         <form action="<c:url value='${url.base}${section.path}'/>" method="post"
                                               id="jahia-forum-section-delete-${section.identifier}">
-                                            <input type="hidden" name="redirectTo"
+                                            <input type="hidden" name="jcrRedirectTo"
                                                    value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                                                 <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-                                            <input type="hidden" name="newNodeOutputFormat" value="html"/>
-                                            <input type="hidden" name="methodToCall" value="delete"/>
+                                            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                                            <input type="hidden" name="jcrMethodToCall" value="delete"/>
                                         </form>
                                     </template:tokenizedForm>
                                 </c:if>
