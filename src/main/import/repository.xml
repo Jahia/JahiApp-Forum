@@ -18,7 +18,7 @@
               <pagecontent jcr:primaryType="jnt:contentList">
                 <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-home" j:view="rooms" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
                 <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                  <pageForm buttonLabel="Create room" class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum-room" useDescription="false">
+                  <pageForm buttonLabel="Create room" class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum-room" useDescription="false" i18npages="false">
                     <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new room" />
                     <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Room erstellen" />
                   </pageForm>
@@ -29,7 +29,7 @@
               <pagecontent jcr:primaryType="jnt:contentList">
                 <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-room" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
                 <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                  <pageForm buttonLabel="Create section" class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createSection /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum" useDescription="true">
+                  <pageForm buttonLabel="Create section" class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createSection /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum" useDescription="true" i18npages="false">
                     <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new section" />
                     <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neue Sektion erstellen" />
                   </pageForm>
