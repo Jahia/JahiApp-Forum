@@ -48,6 +48,12 @@
 
     <description>These are the custom templates (jahiaForum) for running on a Jahia server.</description>
 
+    <scm>
+        <connection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</connection>
+        <url>scm:git:git@github.com:Jahia/JahiApp-Forum.git</url>
+        <developerConnection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</developerConnection>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>org.jahia.server</groupId>
