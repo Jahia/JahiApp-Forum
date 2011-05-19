@@ -19,9 +19,9 @@
                 <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-home" j:view="rooms" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
                 <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
                   <pageForm class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum-room" useDescription="false" i18npages="false">
-                    <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new room" buttonLabel="Create new room"/>
-                    <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Room erstellen" buttonLabel="Neues Room erstellen"/>
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Créer un nouvel espace" buttonLabel="Créer un nouvel espace"/>
+                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Create new room" buttonLabel="Create new room"/>
+                    <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Neues Room erstellen" buttonLabel="Neues Room erstellen"/>
+                    <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Créer un nouvel espace" buttonLabel="Créer un nouvel espace"/>
                   </pageForm>
                 </contentList>
               </pagecontent>
@@ -31,9 +31,9 @@
                 <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-room" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
                 <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
                   <pageForm class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createSection /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum" useDescription="true" i18npages="false">
-                    <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new section" buttonLabel="Create section"/>
-                    <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neue Sektion erstellen" buttonLabel="Neue Sektion erstellen"/>
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Créer une nouvelle section" buttonLabel="Créer une nouvelle section"/>
+                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Create new section" buttonLabel="Create section"/>
+                    <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Neue Sektion erstellen" buttonLabel="Neue Sektion erstellen"/>
+                    <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Créer une nouvelle section" buttonLabel="Créer une nouvelle section"/>
                   </pageForm>
                 </contentList>
               </pagecontent>
