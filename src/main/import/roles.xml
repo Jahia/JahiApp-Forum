@@ -5,8 +5,9 @@
        xmlns:jnt="http://www.jahia.org/jahia/nt/1.0">
     <reader jcr:primaryType="jnt:role"
              j:permissions="/permissions/actions/forum/createTopic /permissions/actions/forum/createPost"/>
-    <writer jcr:primaryType="jnt:role"
-            j:permissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createSection /permissions/actions/forum/moderatePost"/>
+
+    <jahiapp-user jcr:primaryType="jnt:role"
+                  j:permissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createSection"/>
 
     <editor-in-chief jcr:primaryType="jnt:role"
                      j:permissions="/permissions/actions/forum"
