@@ -108,6 +108,8 @@
                                 test="${not empty sessionScope.formDatas['content']}">${fn:escapeXml(sessionScope.formDatas['content'][0])}</c:if><c:if
                                 test="${not empty reply.properties['content'].string}">
                             <blockquote>${reply.properties['content'].string}</blockquote><br />
+                            <p>
+                            </p>
                         </c:if></textarea>
                     </p>
                     <c:if test="${not renderContext.loggedIn}">
