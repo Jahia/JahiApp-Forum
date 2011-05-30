@@ -1,1 +1,64 @@
-Jahia 6.5
+Jahia 6.5 - Forum
+
+* Structure of the forum
+
+ The Forum is a Jahia App so it is a mix of some definitions/views and templates from the studio.
+
+ The Forum reuse pages and topics/posts from the standard Jahia 6.5 installation.
+
+ The Studio Templates inside the Forum define page template for the Forum Home/Room/Section pages. Those templates
+ uses some specific Forum components like <<<forumNavigation>>>:
+
++---------------------
+[jnt:forumNavigation] > jnt:content, jmix:bindedComponent, jmix:forumContent
++---------------------
+
+ It uses also some custom lists to render topics/posts.
+
+ We are creating pages for room/sections to avoid inventing the wheel again. So the Jahia App is really designed from the
+ studio and we add the missing stuff on the flow (navigation,lists,etc.). The usage of pages as start point allows us to
+ reuse a maximum of components from the standard libray of Jahia 6.5 (page from creation for example).
+
+[images/forum-room.png]
+
+ Then we define some content templates for rendering topics, creating new one.
+
+[images/forum-topic.png]
+
+* Monolingual
+
+ The Forum is a monolingual Jahia App this means that each content is not attached to a language in particular but can be
+ created/read from any language. So people in visiting your site in french will see the same Forum as the one visiting it in english.
+ To create pages that exists in all language just uncheck the <<<Pages created will be internationalized>>> in the <<Page form creation>> component.
+
+* Roles/Permissions
+
+    * An <<editor in chief>> could do everything on a forum (creation/moderation/etc.).
+
+    * A <<JahiaApp user>> can create room and section
+
+    * A <<reader>> can create new topics and respond to posts
+    
+ The forum comes with a whole subset of permissions to allow you to customize what people can do on it :
+    
+    * createRoom
+            
+    * deleteRoom
+    
+    * createSection
+
+    * deleteSection
+
+    * createTopic
+
+    * deleteTopic
+
+    * createPost
+
+    * deletePost
+
+    * editPost
+
+    * reportPost
+
+    * moderatePost
