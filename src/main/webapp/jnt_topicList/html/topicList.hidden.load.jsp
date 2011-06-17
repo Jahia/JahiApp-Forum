@@ -22,7 +22,7 @@
 
 <c:if test="${not empty linked}">
 
-<c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:created'] desc"/>
+<c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:lastModified'] desc"/>
     <query:definition var="listQuery" statement="${topicsStatement}" limit="${limit.long}"  />
 
     <c:set target="${moduleMap}" property="emptyListMessage" value="No topic found" />

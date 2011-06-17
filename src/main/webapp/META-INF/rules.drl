@@ -1,0 +1,29 @@
+###############################################################################
+package org.jahia.modules.event.rules.forum
+
+#list any import classes here.
+import org.jahia.services.content.*
+import org.jahia.services.content.rules.*
+import org.jahia.services.render.*
+import org.jahia.services.search.*
+import org.apache.commons.lang.time.*
+import org.slf4j.Logger
+
+expander rules.dsl
+
+#declare any global variables here
+global User user
+global Service service
+global Logger logger
+global SearchURLService urlService
+global RenderContext renderContext
+###############################################################################
+
+rule "New post"
+    when
+        A new node is created
+            - it has the type jnt:post
+        The node has a parent
+    then
+        Set the property jcr:lastModified of the parent with the current time
+end
