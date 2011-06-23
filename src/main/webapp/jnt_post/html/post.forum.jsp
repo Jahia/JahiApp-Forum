@@ -47,7 +47,7 @@
     </template:tokenizedForm>
 </c:if>
 
-<c:if test="${jcr:hasPermission(currentNode, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated')}">
+<c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated')}">
     <template:tokenizedForm>
         <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
               id="jahia-forum-post-moderate-${currentNode.UUID}">
@@ -80,7 +80,7 @@
         <fmt:message key="delete.post"/>
         </span></a></li>
         </c:if>
-        <c:if test="${jcr:hasPermission(currentNode, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated') and not currentNode.properties.moderated.boolean}">
+        <c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated') and not currentNode.properties.moderated.boolean}">
             <li class="delete-post-icon"><a title="<fmt:message key='moderate.post'/>" href="#moderate"
                                             onclick="document.getElementById('jahia-forum-post-moderate-${currentNode.UUID}').submit(); return false;"><span>
         <fmt:message key="moderate.post"/>
