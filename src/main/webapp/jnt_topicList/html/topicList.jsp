@@ -49,7 +49,7 @@
 
                 <c:if test="${not found}">
                     <li class="row">
-                        <p>No topic found</p>
+                        <p><fmt:message key="no.topic.found"/></p>
                     </li>
                 </c:if>
 

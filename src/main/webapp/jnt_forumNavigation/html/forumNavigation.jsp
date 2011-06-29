@@ -107,7 +107,7 @@
           </c:if>
         </c:forEach>
         <c:if test="${not found}">
-          <li class="row"> No thread or topic found </li>
+          <li class="row"><fmt:message key='no.topic.thread.found'/></li>
         </c:if>
       </ul>
       <div class="clear"></div>

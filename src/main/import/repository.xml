@@ -43,7 +43,7 @@
                 <add-a-new-topic aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum"  j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
                   <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic" />
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveaux topic" />
+                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet" />
                 </add-a-new-topic>
                 <pager displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum/pagecontent/topicList" jcr:primaryType="jnt:pager" pageSize="10" />
                 <topicList j:bindedComponent="/templateSets/forum/templates/forum-base/forum" j:subNodesView="forum" jcr:primaryType="jnt:topicList" />
@@ -51,7 +51,7 @@
                 <add-a-new-topic-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum"  j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
                   <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic" />
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveaux topic" />
+                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet" />
                 </add-a-new-topic-1>
               </pagecontent>
             </forum>
@@ -60,7 +60,7 @@
                 <post j:bindedComponent="/templateSets/forum/templates/forum-base/forum-newTopic"  j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
                   <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
+                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message" />
                 </post>
               </pagecontent>
             </forum-newTopic>
@@ -69,7 +69,7 @@
                 <add-a-new-post-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic"  j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
                   <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post" />
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveaux post"/>
+                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
                 </add-a-new-post-1>
                 <pager displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic/pagecontent/postsList" jcr:primaryType="jnt:pager" pageSize="10" />
                 <postsList j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic" j:subNodesView="forum" jcr:primaryType="jnt:postsList" reverseOrder="false" />
@@ -77,7 +77,7 @@
                 <add-a-new-post aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic"  j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
                   <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post" />
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen" />
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveaux post"/>
+                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
                 </add-a-new-post>
               </pagecontent>
             </forum-topic>
@@ -87,7 +87,7 @@
                   <post j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic-newPost"  j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
                     <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
                     <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
+                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message" />
                   </post>
                 </contentList>
                 <postsList j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic-newPost" j:subNodesView="forum" jcr:primaryType="jnt:postsList" limit="3" reverseOrder="true" />
