@@ -14,7 +14,7 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="forum.css"/>
-<template:addResources type="javascript" resources="jquery.js,jquery.validate.js"/>
+<template:addResources type="javascript" resources="jquery.min.js,jquery.validate.js"/>
 <template:addResources type="inlinejavascript">
     <script type="text/javascript">
         $(document).ready(function() {
