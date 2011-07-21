@@ -2,8 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
-<jcr:sql var="numberOfPostsQuery"
-         sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) order by post.[jcr:lastModified] desc"/>
+
+<c:set value="${jcr:getParentOfType(currentNode, 'jmix:moderated')}" var="moderated"/>
+<c:choose>
+    <c:when test="${not jcr:hasPermission(currentNode, 'moderatePost') and not empty moderated}">
+        <jcr:sql var="numberOfPostsQuery"
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and post.[moderated]='true' order by post.[jcr:lastModified] desc"/>
+    </c:when>
+    <c:otherwise>
+        <jcr:sql var="numberOfPostsQuery"
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) order by post.[jcr:lastModified] desc"/>
+    </c:otherwise>
+</c:choose>
+
 <c:set var="numberOfPosts" value="${numberOfPostsQuery.nodes.size}"/>
 <c:forEach items="${numberOfPostsQuery.nodes}" var="node" varStatus="status" end="2">
     <c:if test="${status.first}">
@@ -24,8 +35,9 @@
         </form>
     </template:tokenizedForm>
 </c:if>
-
-<dl class="icon icontopic">
+<%--<c:if test="${numberOfPosts > 0 or jcr:hasPermission(currentNode, 'deleteTopic')}">--%>
+    <%--<li class="row">--%>
+    <dl class="icon icontopic">
     <dt title="posts">
         <c:if test="${jcr:hasPermission(currentNode, 'deleteTopic')}"><ul class="forum-profile-icons">
         
@@ -35,8 +47,13 @@
         
 
     </ul></c:if>
-    <a class="forum-title"
-                         href="<c:url value='${url.base}${currentNode.path}.html'/>">${currentNode.properties.topicSubject.string}</a>
+    <c:if test="${numberOfPosts > 0}">
+        <a class="forum-title"
+           href="<c:url value='${url.base}${currentNode.path}.html'/>">${currentNode.properties.topicSubject.string}</a>
+    </c:if>
+    <c:if test="${numberOfPosts == 0}">
+        ${currentNode.properties.topicSubject.string}
+    </c:if>
         <br/>
     <p>
         <fmt:message key="mix_created.jcr_createdBy"/> ${currentNode.properties["jcr:createdBy"].string}  <fmt:formatDate value="${currentNode.properties['jcr:created'].time}" dateStyle="full" type="both"/>
@@ -59,3 +76,8 @@
         </c:if>
     </dd>
 </dl>
+<%--</li>--%>
+<%--</c:if>--%>
+<%--<c:if test="${numberOfPosts == 0}">--%>
+    <%--<template:addCacheDependency flushOnPathMatchingRegexp="\Q${currentNode.path}\E/.*"/>--%>
+<%--</c:if>--%>

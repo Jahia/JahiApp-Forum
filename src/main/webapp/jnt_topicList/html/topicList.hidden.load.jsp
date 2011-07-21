@@ -22,10 +22,20 @@
 
 <c:if test="${not empty linked}">
 
-<c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:lastModified'] desc"/>
+    <%--<c:set var="topicsStatement" value="SELECT DISTINCT topic.* FROM [jnt:topic] as topic inner join  [jnt:post] as post on ISCHILDNODE(post,topic) where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:lastModified'] desc"/>--%>
+    <c:set value="${jcr:getParentOfType(renderContext.mainResource.node, 'jmix:moderated')}" var="moderated"/>
+    <c:choose>
+        <c:when test="${empty moderated or jcr:hasPermission(moderated, 'moderatePost')}">
+            <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:lastModified'] desc"/>
+        </c:when>
+        <c:otherwise>
+           <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') and topic.['moderated']=true order by topic.['jcr:lastModified'] desc"/>
+        </c:otherwise>
+    </c:choose>
     <query:definition var="listQuery" statement="${topicsStatement}" limit="${limit.long}"  />
 
     <c:set target="${moduleMap}" property="emptyListMessage" value="No topic found" />
     <c:set target="${moduleMap}" property="listQuery" value="${listQuery}" />
     <c:set target="${moduleMap}" property="subNodesView" value="${currentNode.properties['j:subNodesView'].string}" />
+    <template:addCacheDependency flushOnPathMatchingRegexp="\Q${linked.path}\E/[^/]*"/>
 </c:if>

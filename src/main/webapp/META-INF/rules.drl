@@ -27,3 +27,13 @@ rule "New post"
     then
         Set the property jcr:lastModified of the parent with the current time
 end
+
+rule "Moderate post"
+    when
+        A property moderated has been set on a node
+            - the node has the type jnt:post
+        The node has a parent
+    then
+		> parent.addType ( "jmix:moderated", drools );
+        Set the property moderated of the parent with the value of propertyValueAsString
+end

@@ -49,7 +49,14 @@
 </c:if>
 <jcr:node var="linkedNode" path="${linked}"/>
 <c:if test="${not empty linkedNode}">
-    <c:set value="${jcr:getParentOfType(linkedNode, 'jmix:moderated')}" var="moderated"/>
+    <c:choose>
+        <c:when test="${jcr:isNodeType(linkedNode,'jnt:topic')}">
+            <c:set value="${jcr:getParentOfType(linkedNode.parent, 'jmix:moderated')}" var="moderated"/>
+        </c:when>
+        <c:otherwise>
+            <c:set value="${jcr:getParentOfType(linkedNode, 'jmix:moderated')}" var="moderated"/>
+        </c:otherwise>
+    </c:choose>
 </c:if>
 <template:tokenizedForm>
     <form action="<c:url value='${url.base}${linked}.addTopic.do'/>" method="post" name="newTopicForm" id="newTopicForm">
