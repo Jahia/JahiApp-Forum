@@ -117,12 +117,29 @@
                         <c:if test="${jcr:isNodeType(section, 'jnt:page')}">
                             <template:addCacheDependency node="${section}"/>
                             <li class="row">
-                                    <%--<template:module node="${section}" template="section"/>--%>
-                                <jcr:sql var="numberOfPostsQuery"
-                                         sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}']) order by post.[jcr:lastModified] desc"/>
+                                <c:choose>
+                                    <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+                                        <jcr:sql var="numberOfPostsQuery"
+                                                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}'])
+                                 order by post.[jcr:lastModified] desc"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <jcr:sql var="numberOfPostsQuery"
+                                                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}'])
+                                 and post.['moderated']=true order by post.[jcr:lastModified] desc"/>
+                                    </c:otherwise>
+                                </c:choose>
                                 <c:set var="numberOfPosts" value="${numberOfPostsQuery.nodes.size}"/>
-                                <jcr:sql var="numberOfTopicsQuery"
-                                         sql="select * from [jnt:topic] as topic where isdescendantnode(topic, ['${section.path}']) order by topic.[jcr:lastModified] desc"/>
+                                <c:choose>
+                                    <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+                                        <jcr:sql var="numberOfTopicsQuery"
+                                                 sql="select * from [jnt:topic] as topic where isdescendantnode(topic, ['${section.path}']) order by topic.[jcr:lastModified] desc"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <jcr:sql var="numberOfTopicsQuery"
+                                                 sql="select * from [jnt:topic] as topic where isdescendantnode(topic, ['${section.path}']) and topic.['moderated']=true order by topic.[jcr:lastModified] desc"/>
+                                    </c:otherwise>
+                                </c:choose>
                                 <c:set var="numberOfTopics" value="${numberOfTopicsQuery.nodes.size}"/>
                                 <c:forEach items="${numberOfPostsQuery.nodes}" var="node" varStatus="status" end="2">
                                     <c:if test="${status.first}">

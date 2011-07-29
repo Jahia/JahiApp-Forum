@@ -10,11 +10,21 @@
 <template:include view="hidden.header"/>
 <c:set var="linked" value="${uiComponents:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 <c:if test="${not empty linked}">
-    <jcr:sql var="numberOfPostsQuery"
-             sql="select [jcr:uuid] from [jnt:post] as p  where isdescendantnode(p,['${linked.path}'])"/>
+    <c:choose>
+        <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+            <jcr:sql var="numberOfPostsQuery"
+                     sql="select [jcr:uuid] from [jnt:post] as p  where isdescendantnode(p,['${linked.path}'])"/>
+            <jcr:sql var="numberOfThreadsQuery"
+                     sql="select [jcr:uuid] from [jnt:topic] as t  where isdescendantnode(t,['${linked.path}'])"/>
+        </c:when>
+        <c:otherwise>
+            <jcr:sql var="numberOfPostsQuery"
+                     sql="select [jcr:uuid] from [jnt:post] as p  where isdescendantnode(p,['${linked.path}']) and p.['moderated']=true"/>
+            <jcr:sql var="numberOfThreadsQuery"
+                     sql="select [jcr:uuid] from [jnt:topic] as t  where isdescendantnode(t,['${linked.path}']) and t.['moderated']=true"/>
+        </c:otherwise>
+    </c:choose>
     <c:set var="numberOfPosts" value="${numberOfPostsQuery.rows.size}"/>
-    <jcr:sql var="numberOfThreadsQuery"
-             sql="select [jcr:uuid] from [jnt:topic] as t  where isdescendantnode(t,['${linked.path}'])"/>
     <c:set var="numberOfThreads" value="${numberOfThreadsQuery.rows.size}"/>
     <template:addResources type="css" resources="forum.css"/>
     <template:addCacheDependency node="${linked}"/>
