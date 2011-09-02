@@ -40,26 +40,24 @@
 
 package org.jahia.modules.forum.actions;
 
+import org.apache.velocity.tools.generic.DateTool;
 import org.jahia.api.Constants;
-import org.apache.commons.lang.StringUtils;
 import org.jahia.bin.Action;
 import org.jahia.bin.ActionResult;
 import org.jahia.bin.Render;
 import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.JCRSessionWrapper;
+import org.jahia.services.mail.MailService;
 import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.URLResolver;
+import org.jahia.settings.SettingsBean;
 import org.slf4j.Logger;
-import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -70,6 +68,36 @@ import java.util.Map;
  */
 public class AddTopic extends Action {
     private transient static Logger logger = org.slf4j.LoggerFactory.getLogger(AddTopic.class);
+    private MailService mailService;
+    private String templatePath;
+    private boolean emailNotification;
+    private boolean toAdministratorMail;
+    private String email_from;
+    private String email_to;
+
+    public void setToAdministratorMail(boolean toAdministratorMail) {
+        this.toAdministratorMail = toAdministratorMail;
+    }
+
+    public void setEmailNotification(boolean emailNotification) {
+        this.emailNotification = emailNotification;
+    }
+
+    public void setEmail_from(String email_from) {
+        this.email_from = email_from;
+    }
+
+    public void setEmail_to(String email_to) {
+        this.email_to = email_to;
+    }
+
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }
+
+    public void setTemplatePath(String templatePath) {
+        this.templatePath = templatePath;
+    }
 
     @Override
     public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session, Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
@@ -86,6 +114,27 @@ public class AddTopic extends Action {
         if (!session.getUser().getUsername().equals(Constants.GUEST_USERNAME)) {
             List<String> roles = Arrays.asList("owner");
             newNode.grantRoles("u:"+session.getUser().getUsername(), new HashSet<String>(roles));
+        }
+
+
+        if (emailNotification){
+            // Prepare mail to be sent :
+            String to = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator():email_to;
+            Map<String,Object> bindings = new HashMap<String,Object>();
+            bindings.put("formNode",node);
+            bindings.put("ParentFormNode",node.getParent());
+            bindings.put("submitter",renderContext.getUser());
+            bindings.put("date",new DateTool());
+            bindings.put("submissionDate", Calendar.getInstance());
+            bindings.put("locale", resource.getLocale());
+
+            try{
+                mailService.sendMessageWithTemplate(templatePath,bindings,to,email_from,"","",resource.getLocale(),"Jahia Forum");
+                logger.info("Post Creation is sent by e-mail to "+ to);
+            }catch (Exception e){
+                logger.info("Couldn't sent forum email notification: " + e);
+
+            }
         }
 
         jcrSessionWrapper.save();

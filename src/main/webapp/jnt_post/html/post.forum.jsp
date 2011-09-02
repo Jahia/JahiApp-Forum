@@ -68,10 +68,25 @@
         <%--<li class="forum-report-icon"><a title="<fmt:message key='report.post'/>" href="#"><span><fmt:message key='report.post'/></span></a></li>--%>
         <%--</c:if>--%>
         <c:if test="${jcr:hasPermission(currentNode, 'createPost')}">
-            <li class="forum-quote-icon"><a title="<fmt:message key='reply.quote'/>"
-                                            href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}'/>"> <span>
-        <fmt:message key='reply.quote'/>
-        </span> </a></li>
+            <li class="forum-quote-icon">
+                <a title="<fmt:message key='reply'/>"
+                href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}'/>">
+                    <span>
+                        <fmt:message key='reply'/>
+                    </span>
+                </a>
+            </li>
+        </c:if>
+
+        <c:if test="${jcr:hasPermission(currentNode, 'createPost')}">
+            <li class="forum-quote-icon">
+                <a title="<fmt:message key='reply.quote'/>"
+                href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}&quote=true'/>">
+                    <span>
+                        <fmt:message key='reply.quote'/>
+                    </span>
+                </a>
+            </li>
         </c:if>
 
         <c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">

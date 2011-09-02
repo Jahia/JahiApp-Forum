@@ -111,9 +111,11 @@
                     <p class="field"><label for="jahia-forum-thread-${currentNode.UUID}"><fmt:message
                 key="label.description"/></label>
                         <textarea rows="7" cols="35" id="jahia-forum-thread-${currentNode.UUID}" name="content"
-                                  tabindex="2" class="jahia-ckeditor"><c:if
-                                test="${not empty sessionScope.formDatas['content']}">${fn:escapeXml(sessionScope.formDatas['content'][0])}</c:if><c:if
-                                test="${not empty reply.properties['content'].string}">
+                                  tabindex="2" class="jahia-ckeditor">
+                            <c:if test="${not empty sessionScope.formDatas['content']}">
+                                ${fn:escapeXml(sessionScope.formDatas['content'][0])}
+                            </c:if>
+                            <c:if test="${(not empty reply.properties['content'].string) && (not empty param.quote)}">
                             <blockquote>${reply.properties['content'].string}</blockquote><br />
                             <p>
                             </p>

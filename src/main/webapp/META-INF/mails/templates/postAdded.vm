@@ -1,0 +1,9 @@
+#* @vtlvariable name="bundle" type="java.util.ResourceBundle" *#
+<html>
+<body>
+<h2>${bundle.getString("mail.jahia.forum.notification")}</h2>
+<p>${bundle.getString("mail.post.created.on")}<b> ${date.format("full","short",$submissionDate,$locale)}</b> ${bundle.getString("mail.by")} <b>${submitter.getUsername()};</b></p>
+<p>${bundle.getString("mail.topic")}: #if($ParentFormNode.hasProperty("jcr:title")) ${ParentFormNode.getProperty("jcr:title").string}#{else}${ParentFormNode.getName()}#end</p>
+<p>${bundle.getString("mail.thread")}:  #if($formNode.hasProperty("jcr:title")) ${formNode.getProperty("jcr:title").string}#{else}${formNode.getName()}#end</p>
+</body>
+</html>

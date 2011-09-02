@@ -6,5 +6,11 @@
     <bean class="org.jahia.modules.forum.actions.AddTopic" >
         <property name="name" value="addTopic"/>
         <property name="requireAuthenticatedUser" value="false"/>
+        <property name="mailService" ref="MailService"/>
+        <property name="templatePath" value="/META-INF/mails/templates/postAdded.vm"/>
+        <property name="emailNotification" value="false"/>
+        <property name="toAdministratorMail" value="false"/>
+        <property name="email_from" value="from@jahia.com"/>
+        <property name="email_to" value="to@jahia.com"/>
     </bean>
 </beans>
