@@ -56,7 +56,7 @@
     </c:if>
         <br/>
     <p>
-        <fmt:message key="mix_created.jcr_createdBy"/> ${currentNode.properties["jcr:createdBy"].string}  <fmt:formatDate value="${currentNode.properties['jcr:created'].time}" dateStyle="full" type="both"/>
+        <fmt:message key="mix_created.jcr_createdBy"/>&nbsp;${currentNode.properties["jcr:createdBy"].string}&nbsp;<fmt:formatDate value="${currentNode.properties['jcr:created'].time}" dateStyle="full" type="both"/>
     </p>
 
     </dt>
