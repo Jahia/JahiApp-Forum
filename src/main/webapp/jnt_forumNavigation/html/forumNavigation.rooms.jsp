@@ -118,7 +118,7 @@
                             <template:addCacheDependency node="${section}"/>
                             <li class="row">
                                 <c:choose>
-                                    <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+                                    <c:when test="${!jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
                                         <jcr:sql var="numberOfPostsQuery"
                                                  sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}'])
                                  order by post.[jcr:lastModified] desc"/>
@@ -131,7 +131,7 @@
                                 </c:choose>
                                 <c:set var="numberOfPosts" value="${numberOfPostsQuery.nodes.size}"/>
                                 <c:choose>
-                                    <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+                                    <c:when test="${!jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
                                         <jcr:sql var="numberOfTopicsQuery"
                                                  sql="select * from [jnt:topic] as topic where isdescendantnode(topic, ['${section.path}']) order by topic.[jcr:lastModified] desc"/>
                                     </c:when>
