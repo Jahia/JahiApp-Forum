@@ -1,7 +1,7 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 
-[jmix:forumContent] > jmix:droppableContent
+[jmix:forumContent] > jmix:droppableContent mixin
 
 [jnt:topicList] > jnt:content, jmix:bindedComponent, jmix:forumContent , jmix:list
  - j:subNodesView (string, choicelist[templates=jnt:topic,resourceBundle,image]) nofulltext itemtype = layout
