@@ -123,7 +123,7 @@
                     </p>
                     <c:if test="${not renderContext.loggedIn}">
                         <p class="field">
-                            <label for="newTopic_captcha">Captcha</label><br /> <template:captcha displayReloadLink="true"/>
+                            <label for="newTopic_captcha">Captcha</label><br /> <template:captcha/>
                            
                             <c:if test="${not empty sessionScope.formError}">
                                 <label class="error">${sessionScope.formError}</label>
