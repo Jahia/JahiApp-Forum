@@ -44,6 +44,7 @@ import org.apache.velocity.tools.generic.DateTool;
 import org.jahia.api.Constants;
 import org.jahia.bin.Action;
 import org.jahia.bin.ActionResult;
+import org.jahia.bin.Jahia;
 import org.jahia.bin.Render;
 import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.JCRNodeWrapper;
@@ -122,11 +123,14 @@ public class AddTopic extends Action {
             String to = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator():email_to;
             Map<String,Object> bindings = new HashMap<String,Object>();
             bindings.put("formNode",node);
+            bindings.put("formNewNode",newNode);
             bindings.put("ParentFormNode",node.getParent());
             bindings.put("submitter",renderContext.getUser());
             bindings.put("date",new DateTool());
             bindings.put("submissionDate", Calendar.getInstance());
             bindings.put("locale", resource.getLocale());
+            bindings.put("formURL", req.getScheme() +"://" + req.getServerName() + ":" + req.getServerPort() +
+                                Jahia.getContextPath() + node.getUrl());
 
             try{
                 mailService.sendMessageWithTemplate(templatePath,bindings,to,email_from,"","",resource.getLocale(),"Jahia Forum");

@@ -1,9 +1,19 @@
 #* @vtlvariable name="bundle" type="java.util.ResourceBundle" *#
 <html>
 <body>
-<h2>${bundle.getString("mail.jahia.forum.notification")}</h2>
-<p>${bundle.getString("mail.post.created.on")}<b> ${date.format("full","short",$submissionDate,$locale)}</b> ${bundle.getString("mail.by")} <b>${submitter.getUsername()};</b></p>
-<p>${bundle.getString("mail.topic")}: #if($ParentFormNode.hasProperty("jcr:title")) ${ParentFormNode.getProperty("jcr:title").string}#{else}${ParentFormNode.getName()}#end</p>
-<p>${bundle.getString("mail.thread")}:  #if($formNode.hasProperty("jcr:title")) ${formNode.getProperty("jcr:title").string}#{else}${formNode.getName()}#end</p>
+<h3>${bundle.getString("mail.jahia.forum.notification")}</h3>
+<p>
+    <b>${bundle.getString("mail.post.created.on")}:</b> ${date.format("full","short",$submissionDate,$locale)}<br>
+    <b>${bundle.getString("mail.by")}: </b>${submitter.getUsername()};<br>
+    <b>${bundle.getString("mail.topic")}:</b> #if($ParentFormNode.hasProperty("jcr:title")) ${ParentFormNode.getProperty("jcr:title").string}#{else}${ParentFormNode.getName()}#end<br>
+    <b>${bundle.getString("mail.thread")}:</b>  #if($formNode.hasProperty("topicSubject")) ${formNode.getProperty("topicSubject").string}#{else}${formNode.getName()}#end<br>
+    <b>${bundle.getString("mail.url")}:</b> <a href="${formURL}">${formURL}</a>
+</p>
+<p>
+    <b>${bundle.getString("mail.content")}:</b>
+</p>
+<p>
+    ${formNewNode.getProperty("content").string}
+</p>
 </body>
 </html>
