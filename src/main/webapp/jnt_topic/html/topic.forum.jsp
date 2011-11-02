@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
+<%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
 
 <c:set value="${jcr:getParentOfType(currentNode, 'jmix:moderated')}" var="moderated"/>
 <c:choose>
@@ -40,11 +41,14 @@
     <dl class="icon icontopic">
     <dt title="posts">
         <c:if test="${jcr:hasPermission(currentNode, 'deleteTopic')}"><ul class="forum-profile-icons">
-        
-            <li class="delete-post-icon"><a title="Delete this topic" href="#"
-                                            onclick="document.getElementById('jahia-forum-topic-delete-${currentNode.UUID}').submit();"><span>Delete this topic</span></a>
+            <li class="delete-post-icon">
+                <fmt:message key="confirm.delete.topic" var="confirmMsg"/>
+                <a title="<fmt:message key='delete.topic'/>" href="#"
+                                onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}'))
+                                        { document.getElementById('jahia-forum-topic-delete-${currentNode.UUID}').submit(); } return false;">
+                    <span><fmt:message key='delete.topic'/></span>
+                </a>
             </li>
-        
 
     </ul></c:if>
     <c:if test="${numberOfPosts > 0}">
