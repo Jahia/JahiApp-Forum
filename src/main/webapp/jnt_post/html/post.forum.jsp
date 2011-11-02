@@ -90,10 +90,14 @@
         </c:if>
 
         <c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">
-            <li class="delete-post-icon"><a title="<fmt:message key='delete.post'/>" href="#delete"
-                                            onclick="document.getElementById('jahia-forum-post-delete-${currentNode.UUID}').submit(); return false;"><span>
-        <fmt:message key="delete.post"/>
-        </span></a></li>
+            <li class="delete-post-icon">
+                <fmt:message key="confirm.delete.post" var="confirmMsg"/>
+                <a title="<fmt:message key='delete.post'/>" href="#delete"
+                                onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}'))
+                                        { document.getElementById('jahia-forum-post-delete-${currentNode.UUID}').submit(); } return false;">
+                    <span><fmt:message key='delete.post'/></span>
+                </a>
+            </li>
         </c:if>
         <c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated') and not currentNode.properties.moderated.boolean}">
             <li class="delete-post-icon"><a title="<fmt:message key='moderate.post'/>" href="#moderate"
