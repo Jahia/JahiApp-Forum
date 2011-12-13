@@ -54,6 +54,7 @@ import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.URLResolver;
 import org.jahia.settings.SettingsBean;
+import org.jahia.utils.Url;
 import org.slf4j.Logger;
 import org.jahia.services.render.URLGenerator;
 
@@ -130,7 +131,7 @@ public class AddTopic extends Action {
             bindings.put("date",new DateTool());
             bindings.put("submissionDate", Calendar.getInstance());
             bindings.put("locale", resource.getLocale());
-            bindings.put("formURL", URLGenerator.getServer(req) + Jahia.getContextPath() + node.getUrl());
+            bindings.put("formURL", Url.getServer(req) + Jahia.getContextPath() + node.getUrl());
 
             try{
                 mailService.sendMessageWithTemplate(templatePath,bindings,to,email_from,"","",resource.getLocale(),"Jahia Forum");
