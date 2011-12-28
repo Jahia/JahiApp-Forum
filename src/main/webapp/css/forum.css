@@ -497,18 +497,18 @@ dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.t
 *  error
 ******************************************************************************/
 .bodywrapper .forum-Form .error{
-	padding:4px 5px;
+	padding:4px 35px;
 	margin: 5px ;
 	background-color:#ffebe8;
 	border:1px solid #cc3300;
 	display:inline-block;
 }
 .bodywrapper .forum-Form input.error, .bodywrapper .forum-Form select.error{
-	padding:4px 2px;
+	padding:4px 35px;
 	margin:0;
 	background-color:#ffebe8;
 	border:1px solid #cc3300;
 }
 .bodywrapper .forum-Form select.error{
-	padding:4px 5px;
+	padding:4px 35px;
 }
