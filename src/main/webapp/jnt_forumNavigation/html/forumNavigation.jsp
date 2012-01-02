@@ -10,12 +10,8 @@
 <template:addResources type="css" resources="forum.css"/>
 <c:set var="linked" value="${uiComponents:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 <c:if test="${not empty linked}">
-  <jcr:sql var="numberOfPostsQuery"
-             sql="select [jcr:uuid] from [jnt:post] as p  where isdescendantnode(p,['${linked.path}'])"/>
-    <c:set var="totalNumberOfPosts" value="${numberOfPostsQuery.rows.size}"/>
-    <jcr:sql var="numberOfThreadsQuery"
-             sql="select [jcr:uuid] from [jnt:topic] as t  where isdescendantnode(t,['${linked.path}'])"/>
-    <c:set var="totalNumberOfThreads" value="${numberOfThreadsQuery.rows.size}"/>
+    <c:set var="totalNumberOfPosts" value="0"/>
+    <c:set var="totalNumberOfThreads" value="0"/>
   <template:addResources type="css" resources="forum.css"/>
   <template:addCacheDependency node="${linked}"/>
   <div class="topics">
@@ -56,6 +52,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:set var="numberOfPosts" value="${numberOfPostsQuery.nodes.size}"/>
+                <c:set var="totalNumberOfPosts" value="${numberOfPosts + totalNumberOfPosts}"/>
                 <c:choose>
                     <c:when test="${!jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
                         <jcr:sql var="numberOfTopicsQuery"
@@ -67,6 +64,7 @@
                     </c:otherwise>
                 </c:choose>
                 <c:set var="numberOfTopics" value="${numberOfTopicsQuery.nodes.size}"/>
+                <c:set var="totalNumberOfThreads" value="${numberOfTopics + totalNumberOfThreads}"/>
               <c:forEach items="${numberOfPostsQuery.nodes}" var="node" varStatus="status" end="2">
                 <c:if test="${status.first}">
                   <c:set value="${node}" var="lastModifiedNode"/>
