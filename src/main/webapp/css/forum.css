@@ -504,7 +504,7 @@ dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.t
 	display:inline-block;
 }
 .bodywrapper .forum-Form input.error, .bodywrapper .forum-Form select.error{
-	padding:4px 35px;
+	padding:4px 5px;
 	margin:0;
 	background-color:#ffebe8;
 	border:1px solid #cc3300;
