@@ -13,4 +13,9 @@
         <property name="email_from" value="from@jahia.com"/>
         <property name="email_to" value="to@jahia.com"/>
     </bean>
+
+    <bean class="org.jahia.modules.forum.actions.IncrementViewCount" >
+        <property name="name" value="IncrementView"/>
+        <property name="requireAuthenticatedUser" value="false"/>
+    </bean>
 </beans>

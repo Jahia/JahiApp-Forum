@@ -66,6 +66,7 @@
     </dt>
         <%--<dd class="topics">30</dd>--%>
     <dd class="posts">${numberOfPosts}</dd>
+    <dd class="posts">${currentNode.properties["nbOfViews"].string}</dd>
     <dd class="lastpost">
         <c:if test="${numberOfPosts > 0}">
             <span>

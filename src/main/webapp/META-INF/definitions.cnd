@@ -17,3 +17,8 @@
 
 [jmix:moderated] mixin
 - moderated (boolean) = false
+
+[jnt:forumViewCount] > jnt:content, jmix:bindedComponent, jmix:siteComponent
+
+[jmix:viewCountable] mixin
+ - nbOfViews (long) = 0  autocreated hidden onconflict=sum

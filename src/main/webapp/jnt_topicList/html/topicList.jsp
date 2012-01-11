@@ -40,7 +40,7 @@
                     <dl class="icon">
                         <dt><fmt:message key="topic"/></dt>
                         <dd class="topics"><fmt:message key="posts"/></dd>
-                            <%--<dd class="posts">View</dd>--%>
+                        <dd class="posts"><fmt:message key="views"/></dd>
                         <dd class="lastpost"><span><fmt:message key="lastPosts"/></span></dd>
                     </dl>
                 </li>

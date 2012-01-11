@@ -79,6 +79,7 @@
                   <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen" />
                     <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
                 </add-a-new-post>
+                <forumViewCount j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic" jcr:primaryType="jnt:forumViewCount"/>
               </pagecontent>
             </forum-topic>
             <forum-topic-newPost j:applyOn="jnt:topic" j:defaultTemplate="false" j:hiddenTemplate="false" j:priority="10" jcr:primaryType="jnt:contentTemplate">
