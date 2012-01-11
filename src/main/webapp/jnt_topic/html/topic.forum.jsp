@@ -8,11 +8,11 @@
 <c:choose>
     <c:when test="${not jcr:hasPermission(currentNode, 'moderatePost') and not empty moderated}">
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and post.[moderated]='true' order by post.[jcr:lastModified] desc"/>
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and post.[moderated]='true' and (post.['jcr:mixinTypes'] not like 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
     </c:when>
     <c:otherwise>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) order by post.[jcr:lastModified] desc"/>
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and (post.['jcr:mixinTypes'] not like 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
     </c:otherwise>
 </c:choose>
 
@@ -70,8 +70,8 @@
     <dd class="lastpost">
         <c:if test="${numberOfPosts > 0}">
             <span>
-                        <dfn><fmt:message key="last.post"/></dfn> <fmt:message key="by"/> <a
-                    href="<c:url value='${url.base}${lastModifiedNode.parent.path}.html'/>"><img height="9"
+                <dfn><fmt:message key="last.post"/></dfn> <fmt:message key="by"/> <a
+                    href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>"><img height="9"
                                                                                 width="11"
                                                                                 title="View the latest post"
                                                                                 alt="View the latest post"

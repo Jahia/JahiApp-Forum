@@ -94,6 +94,13 @@
                 <postsList j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic-newPost" j:subNodesView="forum" jcr:primaryType="jnt:postsList" limit="3" reverseOrder="true" />
               </pagecontent>
             </forum-topic-newPost>
+            <forum-profile j:applyOn="jnt:user" j:defaultTemplate="false" j:hiddenTemplate="false" j:originWS="default" jcr:primaryType="jnt:contentTemplate">
+                <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-profile" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
+                <pagecontent j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
+                    <main-resource-display j:mainResourceView="forum" jcr:primaryType="jnt:mainResourceDisplay"/>
+                    <latest j:applyOn="jnt:user" j:originWS="default" jcr:primaryType="jnt:latestForumPosts"/>
+                </pagecontent>
+            </forum-profile>
           </forum-base>
         <contents jcr:primaryType="jnt:contentFolder" />
         <files jcr:primaryType="jnt:folder">

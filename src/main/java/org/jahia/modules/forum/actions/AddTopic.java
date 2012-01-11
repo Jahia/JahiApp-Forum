@@ -118,7 +118,7 @@ public class AddTopic extends Action {
             List<String> roles = Arrays.asList("owner");
             newNode.grantRoles("u:"+session.getUser().getUsername(), new HashSet<String>(roles));
         }
-
+        jcrSessionWrapper.save();
 
         if (emailNotification){
             // Prepare mail to be sent :
@@ -142,7 +142,6 @@ public class AddTopic extends Action {
             }
         }
 
-        jcrSessionWrapper.save();
         // Remove any existing REDIRECT_TO parameter to be sure to go to node.getPath
         parameters.remove(Render.REDIRECT_TO);
         return new ActionResult(HttpServletResponse.SC_OK, node.getPath(), Render.serializeNodeToJSON(newNode));
