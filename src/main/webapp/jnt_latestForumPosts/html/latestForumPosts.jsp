@@ -16,7 +16,7 @@
 <template:addResources type="css" resources="fileList.css, simpleList.css"/>
 <utility:logger level="error" value="Started latesForumPost"/>
 <template:include view="hidden.header"/>
-<div><h3><fmt:message key='list.of.posts'/></h3></div>
+<h3><fmt:message key='list.of.posts'/></h3>
 <div class="posts" id="${currentNode.UUID}">
         <c:forEach items="${moduleMap.currentList}" var="subchild" varStatus="status" begin="${moduleMap.begin}"
                    end="${moduleMap.end}">
@@ -38,7 +38,7 @@
                             <c:otherwise>
                                 <div class="forum-box forum-box-style${(status.index mod 2)+1}">
                                         <template:module node="${subchild}" view="${moduleMap.subNodesView}"/>
-                                    </div>
+                                </div>
                             </c:otherwise>
                         </c:choose>
                     </c:when>

@@ -77,21 +77,15 @@
         <fmt:message key="moderate.post"/>
         </span></a></li>
         </c:if>
-        <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
+         <%-- <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
             <li class="edit-post-icon"><a title="<fmt:message key='edit.post'/>" href="#edit"
                                           onclick="$('#edit${currentNode.UUID}').dblclick(); return false;"><span><fmt:message
                     key="edit.post"/></span></a></li>
-        </c:if>
+        </c:if>--%>
     </ul>
 
     <h4 class="forum-h4-first">${title.string}</h4>
 
-    <p class="forum-date">
-        <span class="timestamp">
-            <fmt:formatDate
-                    value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
-        </span>
-    </p>
     <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
         <div class="content editablePost" jcr:id="content"
              id="edit${currentNode.identifier}"
@@ -100,6 +94,14 @@
     <c:if test="${not jcr:hasPermission(currentNode, 'editPost')}">
         <div class="content">${content.string}</div>
     </c:if>
+</div>
+<div class="user-posts">
+        <p class="forum-date">
+        <span class="timestamp">
+            <fmt:formatDate
+                    value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
+        </span>
+        </p>
 </div>
 <div id="back2top${currentNode.identifier}" class="back2top"></div>
 <script type="text/javascript">

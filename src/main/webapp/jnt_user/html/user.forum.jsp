@@ -28,30 +28,32 @@
 <jcr:nodeProperty node="${currentNode}" name="jcr:created" var="registration"/>
 <jcr:node var="user" path="${renderContext.user.localPath}"/>
 
+<template:addResources type="css" resources="forum.css"/>
+
 <h3><fmt:message key='forum.user.profil'/></h3>
 
 <div>
-    <ul>
+    <ul class="list-forum-user-profil">
         <jcr:nodeProperty var="picture" node="${currentNode}" name="j:picture"/>
         <c:if test="${not empty country}">
             <li>
-                <fmt:message key='country'/>: ${fn:toLowerCase(country.string)} <img src="<c:url value='${url.base}/../../../css/images/flags/plain/flag_${fn:toLowerCase(country.string)}.png'/>"/>
+                <strong><fmt:message key='country'/>: </strong>${fn:toLowerCase(country.string)} <img src="<c:url value='${url.base}/../../../css/images/flags/plain/flag_${fn:toLowerCase(country.string)}.png'/>"/>
             </li>
         </c:if>
         <li>
-        <fmt:message key='pseudo'/>: ${currentNode.name}
+         <strong><fmt:message key='pseudo'/>: </strong>${currentNode.name}
         </li><li>
-        <fmt:message key='name'/>: ${firstname}&nbsp;${lastname}
+         <strong><fmt:message key='name'/>: </strong>${firstname}&nbsp;${lastname}
         </li><li>
-        <fmt:message key='company'/>: ${company}
+         <strong><fmt:message key='company'/>: </strong>${company}
         </li><li>
-        <fmt:message key='email'/>: ${email}
+         <strong><fmt:message key='email'/>: </strong>${email}
         </li><li>
-        <fmt:message key='registration.date'/>: <fmt:formatDate value="${registration.time}" type="date" dateStyle="medium"/>
+         <strong><fmt:message key='registration.date'/>: </strong><fmt:formatDate value="${registration.time}" type="date" dateStyle="medium"/>
         </li><li>
-        <fmt:message key='number.of.posts'/>: ${numberOfPosts}
+        <strong><fmt:message key='number.of.posts'/>: </strong>${numberOfPosts}
         </li>
-    </div>
+    </ul>
 </div>
 
 
