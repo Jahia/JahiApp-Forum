@@ -83,7 +83,7 @@
                     <p class="field">
                         <c:if test="${not renderContext.loggedIn}">
                             <label for="newTopic_pseudo"><fmt:message key="comment.pseudo"/></label>
-                            <c:if test="${not empty sessionScope.formDatas['pseudo']}">tyty<input
+                            <c:if test="${not empty sessionScope.formDatas['pseudo']}"><input
                                     value="${sessionScope.formDatas['pseudo'][0]}"
                                     type="text" size="35" name="pseudo" id="newTopic_pseudo"
                                     tabindex="1"/></c:if>
@@ -97,14 +97,15 @@
                         <fmt:message key="reply.prefix" var="replyPrefix"/><c:set var="replyPrefix"
                                                                                   value="${replyPrefix} "/>
                         <c:set var="replyTitle" value="${reply.properties['jcr:title'].string}"/>
-                        <c:if test="${not empty sessionScope.formDatas['jcr:title']}">titi<input
+						<label for="newTopic_title"><fmt:message key="label.title"/></label>
+                        <c:if test="${not empty sessionScope.formDatas['jcr:title']}"><input
                                 value="${sessionScope.formDatas['jcr:title'][0]}"
                                 type="text" size="35" id="newTopic_title" name="jcr:title"
                                 tabindex="1"/></c:if>
                         </p>
                         <p class="field">     
                         <c:if test="${empty sessionScope.formDatas['jcr:title']}">
-                            <label for="newTopic_title"><fmt:message key="label.title"/></label><input value="${not empty replyTitle ? replyPrefix : ''}${not empty replyTitle ? fn:escapeXml(replyTitle) : ''}"
+                            <input value="${not empty replyTitle ? replyPrefix : ''}${not empty replyTitle ? fn:escapeXml(replyTitle) : ''}"
                                    type="text" size="35" id="newTopic_title" name="jcr:title"
                                    tabindex="1"/></c:if>
 						</p>
