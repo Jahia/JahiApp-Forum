@@ -1,117 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<content xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:jnt="http://www.jahia.org/jahia/nt/1.0" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:jmix="http://www.jahia.org/jahia/mix/1.0" xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:rep="internal">
+<content xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:test_templates="http://www.jahia.org/jahia/test_templates/nt/1.0" xmlns:jnt="http://www.jahia.org/jahia/nt/1.0" xmlns:test="http://www.apache.org/jackrabbit/test" xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:jmix="http://www.jahia.org/jahia/mix/1.0" xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:rep="internal">
   <templateSets jcr:primaryType="jnt:templateSets">
-    <forum changefreq="monthly" j:installedModules="forum" j:siteType="jahiapp" j:wcagCompliance="true" jcr:mixinTypes="jmix:sitemap" jcr:primaryType="jnt:virtualsite" priority="0.5" j:title="JahiApp - Forum">
-      <templates jcr:primaryType="jnt:templatesFolder" j:rootTemplatePath="/base">
-          <forum-base j:hiddenTemplate="false" jcr:primaryType="jnt:template">
-            <pagecontent jcr:primaryType="jnt:contentList">
-              <pagecontent j:id="forum-body" j:skin="skins.custom" jcr:mixinTypes="jmix:skinnable jmix:customSkin" jcr:primaryType="jnt:contentList">
-                <row column="1col16" jcr:primaryType="jnt:row" />
-              </pagecontent>
+    <forum changefreq="monthly" j:dependencies="default rating" j:installedModules="Jahia Forum" j:originWS="default" j:siteType="jahiapp" j:title="Jahia Forum" j:wcagCompliance="true" jcr:mixinTypes="jmix:sitemap" jcr:primaryType="jnt:virtualsite" priority="0.5">
+      <portlets j:originWS="default" jcr:primaryType="jnt:portletFolder"/>
+      <files j:originWS="default" jcr:primaryType="jnt:folder"/>
+      <contents j:originWS="default" jcr:primaryType="jnt:contentFolder"/>
+      <templates j:originWS="default" j:rootTemplatePath="/base" jcr:primaryType="jnt:templatesFolder">
+        <forum-base j:hiddenTemplate="false" j:originWS="default" jcr:primaryType="jnt:template">
+          <forum-home j:originWS="default" jcr:primaryType="jnt:pageTemplate">
+            <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+              <forumNavigation j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-home" j:originWS="default" j:view="rooms" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation"/>
+              <contentList j:originWS="default" j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:style jmix:skinnable" jcr:primaryType="jnt:contentList">
+                <pageForm class="forum-Form" i18npages="false" j:originWS="default" j:requiredMode="live" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createRoom _x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-room" useDescription="false">
+                  <j:translation_en buttonLabel="Create new room" jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new room"/>
+                  <j:translation_de buttonLabel="Neues Room erstellen" jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Room erstellen"/>
+                  <j:translation_fr buttonLabel="Créer un nouvel espace" jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Créer un nouvel espace"/>
+                </pageForm>
+              </contentList>
             </pagecontent>
-            <row-col1 jcr:primaryType="jnt:contentList">
-              <pageBreadcrumb displayCurrentPage="true" displayHome="true" displayLinkOnCurrentPage="false" jcr:primaryType="jnt:pageBreadcrumb" />
-              <pageTitle jcr:primaryType="jnt:pageTitle" />
-              <pagecontent j:allowedTypes="" jcr:primaryType="jnt:area" />
-            </row-col1>
-            <forum-home jcr:primaryType="jnt:pageTemplate">
-              <pagecontent jcr:primaryType="jnt:contentList">
-                <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-home" j:view="rooms" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
-                <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                  <pageForm class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum-room" useDescription="false" i18npages="false">
-                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Create new room" buttonLabel="Create new room"/>
-                    <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Neues Room erstellen" buttonLabel="Neues Room erstellen"/>
-                    <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Créer un nouvel espace" buttonLabel="Créer un nouvel espace"/>
-                  </pageForm>
-                </contentList>
-              </pagecontent>
-            </forum-home>
-            <forum-room jcr:primaryType="jnt:pageTemplate">
-              <pagecontent jcr:primaryType="jnt:contentList">
-                <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-room" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
-                <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                  <pageForm class="forum-Form" j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createSection /permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="/templateSets/forum/templates/forum-base/forum" useDescription="true" i18npages="false">
-                    <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Create new section" buttonLabel="Create section"/>
-                    <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Neue Sektion erstellen" buttonLabel="Neue Sektion erstellen"/>
-                    <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Créer une nouvelle section" buttonLabel="Créer une nouvelle section"/>
-                  </pageForm>
-                </contentList>
-              </pagecontent>
-            </forum-room>
-            <forum jcr:primaryType="jnt:pageTemplate">
-              <pagecontent jcr:primaryType="jnt:contentList">
-                <add-a-new-topic aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum"  j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
-                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic" />
-                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet" />
-                </add-a-new-topic>
-                <pager displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum/pagecontent/topicList" jcr:primaryType="jnt:pager" pageSize="10" />
-                <topicList j:bindedComponent="/templateSets/forum/templates/forum-base/forum" j:subNodesView="forum" jcr:primaryType="jnt:topicList" />
-                <pager-1 displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum/pagecontent/topicList" jcr:primaryType="jnt:pager" pageSize="10"/>
-                <add-a-new-topic-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum"  j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
-                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic" />
-                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet" />
-                </add-a-new-topic-1>
-              </pagecontent>
-            </forum>
-            <forum-newTopic j:hiddenTemplate="true" jcr:primaryType="jnt:pageTemplate">
-              <pagecontent j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                <post j:bindedComponent="/templateSets/forum/templates/forum-base/forum-newTopic"  j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
-                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message" />
+          </forum-home>
+          <forum-room j:originWS="default" jcr:primaryType="jnt:pageTemplate">
+            <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+              <forumNavigation j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-room" j:originWS="default" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation"/>
+              <contentList j:originWS="default" j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:style jmix:skinnable" jcr:primaryType="jnt:contentList">
+                <pageForm class="forum-Form" i18npages="false" j:originWS="default" j:requiredMode="live" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createTopic _x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createSection" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:pageFormCreation" stayOnPage="true" templateNode="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum" useDescription="true">
+                  <j:translation_en buttonLabel="Create section" jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Create new section"/>
+                  <j:translation_de buttonLabel="Neue Sektion erstellen" jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neue Sektion erstellen"/>
+                  <j:translation_fr buttonLabel="Créer une nouvelle section" jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Créer une nouvelle section"/>
+                </pageForm>
+              </contentList>
+            </pagecontent>
+          </forum-room>
+          <forum j:originWS="default" jcr:primaryType="jnt:pageTemplate">
+            <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+              <add-a-new-topic aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum" j:originWS="default" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
+                <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic"/>
+                <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen"/>
+                <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet"/>
+              </add-a-new-topic>
+              <pager displayNbOfItemsPerPage="true" displayPager="true" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum_x002f_pagecontent_x002f_topicList" j:originWS="default" jcr:primaryType="jnt:pager" nbOfPages="10" pageSize="10"/>
+              <topicList j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum" j:originWS="default" j:subNodesView="forum" jcr:primaryType="jnt:topicList"/>
+              <pager-1 displayNbOfItemsPerPage="true" displayPager="true" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum_x002f_pagecontent_x002f_topicList" j:originWS="default" jcr:primaryType="jnt:pager" nbOfPages="10" pageSize="10"/>
+              <add-a-new-topic-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum" j:originWS="default" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-newTopic">
+                <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new topic"/>
+                <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neues Thema erstellen"/>
+                <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau sujet"/>
+              </add-a-new-topic-1>
+            </pagecontent>
+          </forum>
+          <forum-newTopic j:hiddenTemplate="true" j:originWS="default" jcr:primaryType="jnt:pageTemplate">
+            <pagecontent j:originWS="default" j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:style jmix:skinnable" jcr:primaryType="jnt:contentList">
+              <post j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-newTopic" j:originWS="default" j:requiredMode="live" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createTopic" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
+                <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post"/>
+                <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post"/>
+                <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message"/>
+              </post>
+            </pagecontent>
+          </forum-newTopic>
+          <forum-topic j:applyOn="jnt:topic" j:defaultTemplate="true" j:hiddenTemplate="false" j:originWS="default" j:priority="10" jcr:primaryType="jnt:contentTemplate">
+            <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+              <add-a-new-post-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic" j:originWS="default" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
+                <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post"/>
+                <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen"/>
+                <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
+              </add-a-new-post-1>
+              <pager displayNbOfItemsPerPage="true" displayPager="true" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic_x002f_pagecontent_x002f_postsList" j:originWS="default" jcr:primaryType="jnt:pager" nbOfPages="10" pageSize="10"/>
+              <postsList j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic" j:originWS="default" j:subNodesView="forum" jcr:primaryType="jnt:postsList" reverseOrder="false"/>
+              <pager-1 displayNbOfItemsPerPage="true" displayPager="true" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic_x002f_pagecontent_x002f_postsList" j:originWS="default" jcr:primaryType="jnt:pager" nbOfPages="10" pageSize="10"/>
+              <add-a-new-post aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic" j:originWS="default" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
+                <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post"/>
+                <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen"/>
+                <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
+              </add-a-new-post>
+              <forumViewCount j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic" j:originWS="default" jcr:primaryType="jnt:forumViewCount"/>
+            </pagecontent>
+          </forum-topic>
+          <forum-topic-newPost j:applyOn="jnt:topic" j:defaultTemplate="false" j:hiddenTemplate="false" j:originWS="default" j:priority="10" jcr:primaryType="jnt:contentTemplate">
+            <pagecontent j:originWS="default" jcr:mixinTypes="jmix:style" jcr:primaryType="jnt:contentList">
+              <contentList j:originWS="default" j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:style jmix:skinnable" jcr:primaryType="jnt:contentList">
+                <post j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic-newPost" j:originWS="default" j:requiredMode="live" j:requiredPermissions="_x0023__x002f_permissions_x002f_actions_x002f_forum_x002f_createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
+                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post"/>
+                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post"/>
+                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message"/>
                 </post>
-              </pagecontent>
-            </forum-newTopic>
-            <forum-topic j:applyOn="jnt:topic" j:defaultTemplate="true" j:hiddenTemplate="false" j:priority="10" jcr:primaryType="jnt:contentTemplate">
-              <pagecontent jcr:primaryType="jnt:contentList">
-                <add-a-new-post-1 aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic"  j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
-                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post" />
-                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen" />
-                  <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
-                </add-a-new-post-1>
-                <pager displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic/pagecontent/postsList" jcr:primaryType="jnt:pager" pageSize="10" />
-                <postsList j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic" j:subNodesView="forum" jcr:primaryType="jnt:postsList" reverseOrder="false" />
-                <pager-1 displayPager="true" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic/pagecontent/postsList" jcr:primaryType="jnt:pager" pageSize="10"/>
-                <add-a-new-post aClass="forum-post-icon" divClass="forum-buttons" j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic"  j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:componentLink" targetTemplate="forum-topic-newPost">
-                  <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Add a new post" />
-                  <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Neuen Eintrag erstellen" />
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Ajouter un nouveau message"/>
-                </add-a-new-post>
-                <forumViewCount j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic" jcr:primaryType="jnt:forumViewCount"/>
-              </pagecontent>
-            </forum-topic>
-            <forum-topic-newPost j:applyOn="jnt:topic" j:defaultTemplate="false" j:hiddenTemplate="false" j:priority="10" jcr:primaryType="jnt:contentTemplate">
-              <pagecontent jcr:mixinTypes="jmix:style" jcr:primaryType="jnt:contentList">
-                <contentList j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                  <post j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic-newPost"  j:requiredMode="live" j:requiredPermissions="/permissions/actions/forum/createPost" jcr:mixinTypes="jmix:requiredPermissions" jcr:primaryType="jnt:postForm">
-                    <j:translation_en jcr:language="en" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                    <j:translation_de jcr:language="de" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Post" />
-                    <j:translation_fr jcr:language="fr" jcr:mixinTypes="mix:title" jcr:primaryType="jnt:translation" jcr:title="Message" />
-                  </post>
-                </contentList>
-                <postsList j:bindedComponent="/templateSets/forum/templates/forum-base/forum-topic-newPost" j:subNodesView="forum" jcr:primaryType="jnt:postsList" limit="3" reverseOrder="true" />
-              </pagecontent>
-            </forum-topic-newPost>
-            <forum-profile j:applyOn="jnt:user" j:defaultTemplate="false" j:hiddenTemplate="false" j:originWS="default" jcr:primaryType="jnt:contentTemplate">
-                <forumNavigation j:bindedComponent="/templateSets/forum/templates/forum-base/forum-profile" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation" />
-                <pagecontent j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:skinnable jmix:style" jcr:primaryType="jnt:contentList">
-                    <main-resource-display j:mainResourceView="forum" jcr:primaryType="jnt:mainResourceDisplay"/>
-                    <latest j:applyOn="jnt:user" j:subNodesView="forumLatest" j:originWS="default" jcr:primaryType="jnt:latestForumPosts"/>
-                </pagecontent>
-            </forum-profile>
-          </forum-base>
-        <contents jcr:primaryType="jnt:contentFolder" />
-        <files jcr:primaryType="jnt:folder">
-          <jahiapp-forum-logo.png j:height="66" j:width="129" jcr:mixinTypes="jmix:image" jcr:primaryType="jnt:file">
-            <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource" />
-            <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource" />
-            <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource" />
+              </contentList>
+              <postsList j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-topic-newPost" j:originWS="default" j:subNodesView="forum" jcr:primaryType="jnt:postsList" limit="3" reverseOrder="true"/>
+            </pagecontent>
+          </forum-topic-newPost>
+          <forum-profile j:applyOn="jnt:user" j:defaultTemplate="false" j:hiddenTemplate="false" j:originWS="default" jcr:primaryType="jnt:contentTemplate">
+            <forumNavigation j:bindedComponent="_x002f_templateSets_x002f_forum_x002f_templates_x002f_forum-base_x002f_forum-profile" j:originWS="default" jcr:mixinTypes="jmix:renderable" jcr:primaryType="jnt:forumNavigation"/>
+            <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+              <content-list j:originWS="default" j:skin="skins.box9" j:style="grey" jcr:mixinTypes="jmix:style jmix:skinnable" jcr:primaryType="jnt:contentList">
+                <main-resource-display j:mainResourceView="forum" j:originWS="default" jcr:primaryType="jnt:mainResourceDisplay"/>
+              </content-list>
+              <latest j:originWS="default" j:subNodesView="forumLatest" jcr:primaryType="jnt:latestForumPosts"/>
+            </pagecontent>
+          </forum-profile>
+          <pagecontent j:originWS="default" jcr:primaryType="jnt:contentList">
+            <pagecontent j:id="forum-body" j:originWS="default" j:skin="skins.custom" jcr:mixinTypes="jmix:customSkin jmix:skinnable" jcr:primaryType="jnt:contentList">
+              <row column="1col16" j:originWS="default" jcr:primaryType="jnt:row"/>
+            </pagecontent>
+          </pagecontent>
+          <row-col1 j:originWS="default" jcr:primaryType="jnt:contentList">
+            <pageBreadcrumb displayCurrentPage="true" displayHome="true" displayLinkOnCurrentPage="false" j:originWS="default" jcr:primaryType="jnt:pageBreadcrumb"/>
+            <pageTitle j:originWS="default" jcr:primaryType="jnt:pageTitle"/>
+            <pagecontent j:allowedTypes="" j:originWS="default" jcr:primaryType="jnt:area"/>
+          </row-col1>
+        </forum-base>
+        <contents j:originWS="default" jcr:primaryType="jnt:contentFolder"/>
+        <files j:originWS="default" jcr:primaryType="jnt:folder">
+          <jahiapp-forum-logo.png j:height="66" j:originWS="default" j:width="129" jcr:mixinTypes="jmix:image" jcr:primaryType="jnt:file">
+            <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+            <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+            <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
           </jahiapp-forum-logo.png>
         </files>
       </templates>
+      <j:versionInfo j:deployementDate="2012-01-12T11:20:04.604+01:00" j:version="1.2-SNAPSHOT" jcr:primaryType="jnt:versionInfo"/>
+      <components j:originWS="default" jcr:primaryType="jnt:componentFolder">
+        <jmix:forumContent j:originWS="default" jcr:primaryType="jnt:componentFolder">
+          <j:translation_en jcr:description="" jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
+          <j:translation_it jcr:description="" jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
+          <j:translation_es jcr:description="" jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
+          <j:translation_fr jcr:description="" jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Composants de forum"/>
+          <j:translation_pt jcr:description="" jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
+          <j:translation_de jcr:description="" jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
+          <jnt:topicList j:originWS="default" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: liste des fils de discussion"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
+          </jnt:topicList>
+          <jnt:forumNavigation j:originWS="default" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum: navigation"/>
+          </jnt:forumNavigation>
+          <jnt:postsList j:originWS="default" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum: list of messages"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum: list of messages"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum: list of messages"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: liste des messages"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum: list of messages"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum: list of messages"/>
+          </jnt:postsList>
+          <jnt:postForm j:originWS="default" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum: message form"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum: message form"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum: message form"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: formulaire de message"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum: message form"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum: message form"/>
+          </jnt:postForm>
+        </jmix:forumContent>
+        <jmix:queryContent j:originWS="default" jcr:primaryType="jnt:componentFolder">
+          <j:translation_en jcr:description="" jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Search and Queries"/>
+          <j:translation_it jcr:description="" jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Ricerca"/>
+          <j:translation_es jcr:description="" jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Búsqueda y Consulta"/>
+          <j:translation_fr jcr:description="" jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Recherche et Requêtes"/>
+          <j:translation_pt jcr:description="" jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Pesquisa e Consulta"/>
+          <j:translation_de jcr:description="" jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Such-und Abfrage"/>
+          <jnt:latestForumPosts j:originWS="default" jcr:mixinTypes="jmix:studioOnly" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="latestForumPosts"/>
+          </jnt:latestForumPosts>
+        </jmix:queryContent>
+        <jmix:siteComponent j:originWS="default" jcr:primaryType="jnt:componentFolder">
+          <j:translation_en jcr:description="" jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Site Components"/>
+          <j:translation_it jcr:description="" jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Sito Web Components"/>
+          <j:translation_es jcr:description="" jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Sitio web Componentes"/>
+          <j:translation_fr jcr:description="" jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Composants prêts à l'emploi"/>
+          <j:translation_pt jcr:description="" jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Site Components"/>
+          <j:translation_de jcr:description="" jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Site-Komponenten"/>
+          <jnt:forumViewCount j:originWS="default" jcr:primaryType="jnt:simpleComponent">
+            <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+            <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+            <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+            <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+            <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="forumViewCount"/>
+          </jnt:forumViewCount>
+        </jmix:siteComponent>
+      </components>
     </forum>
   </templateSets>
 </content>
-
