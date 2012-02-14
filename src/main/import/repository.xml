@@ -116,7 +116,6 @@
           </jahiapp-forum-logo.png>
         </files>
       </templates>
-      <j:versionInfo j:deployementDate="2012-01-12T11:20:04.604+01:00" j:version="1.2-SNAPSHOT" jcr:primaryType="jnt:versionInfo"/>
       <components j:originWS="default" jcr:primaryType="jnt:componentFolder">
         <jmix:forumContent j:originWS="default" jcr:primaryType="jnt:componentFolder">
           <j:translation_en jcr:description="" jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum Components"/>
