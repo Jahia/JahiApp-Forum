@@ -56,7 +56,6 @@ import org.jahia.services.render.URLResolver;
 import org.jahia.settings.SettingsBean;
 import org.jahia.utils.Url;
 import org.slf4j.Logger;
-import org.jahia.services.render.URLGenerator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -113,6 +112,9 @@ public class AddTopic extends Action {
             node.setProperty("topicSubject",topicTitle);
         }
         JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post","",false);
+        if (node.isNodeType("jnt:topic")) {
+            node.setProperty("topicLastContributionDate",newNode.getProperty("jcr:created").getDate());
+        }
 
         if (!session.getUser().getUsername().equals(Constants.GUEST_USERNAME)) {
             List<String> roles = Arrays.asList("owner");

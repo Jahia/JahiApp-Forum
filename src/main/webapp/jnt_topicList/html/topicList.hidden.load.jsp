@@ -26,10 +26,10 @@
     <c:set value="${jcr:getParentOfType(renderContext.mainResource.node, 'jmix:moderated')}" var="moderated"/>
     <c:choose>
         <c:when test="${empty moderated or jcr:hasPermission(moderated, 'moderatePost')}">
-            <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['jcr:lastModified'] desc"/>
+            <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') order by topic.['topicLastContributionDate'] desc"/>
         </c:when>
         <c:otherwise>
-           <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') and topic.['moderated']=true order by topic.['jcr:lastModified'] desc"/>
+           <c:set var="topicsStatement" value="select * from [jnt:topic] as topic where ISCHILDNODE(topic,'${linked.path}') and topic.['moderated']=true order by topic.['topicLastContributionDate'] desc"/>
         </c:otherwise>
     </c:choose>
     <query:definition var="listQuery" statement="${topicsStatement}" limit="${limit.long}"  />
