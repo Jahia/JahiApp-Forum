@@ -73,7 +73,7 @@ public class IncrementViewCount extends Action {
         if(!node.isNodeType("jmix:viewCountable")) {
             node.checkout();
             node.addMixin("jmix:viewCountable");
-            node.getRealNode().getSession().save();
+            jcrSessionWrapper.save();
             logger.info("mixin viewCountable added to "+node.getPath());
         }
         // Update number of views
@@ -81,7 +81,7 @@ public class IncrementViewCount extends Action {
         node.setProperty("nbOfViews", ++topicnbOfViews);
         logger.info("nbOfViews of "+node.getPath()+": "+topicnbOfViews);
 
-        node.getRealNode().getSession().save();
+        jcrSessionWrapper.save();
         return new ActionResult(HttpServletResponse.SC_OK, node.getPath(), Render.serializeNodeToJSON(node));
     }
 }
