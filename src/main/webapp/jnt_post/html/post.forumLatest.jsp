@@ -65,8 +65,8 @@
             <li class="delete-post-icon">
                 <fmt:message key="confirm.delete.post" var="confirmMsg"/>
                 <a title="<fmt:message key='delete.post'/>" href="#delete"
-                                onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}'))
-                                        { document.getElementById('jahia-forum-post-delete-${currentNode.UUID}').submit(); } return false;">
+                                onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
+                                        { document.getElementById("jahia-forum-post-delete-${currentNode.UUID}").submit(); } return false;'>
                     <span><fmt:message key='delete.post'/></span>
                 </a>
             </li>

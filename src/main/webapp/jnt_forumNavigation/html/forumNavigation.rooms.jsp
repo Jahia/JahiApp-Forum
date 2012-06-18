@@ -73,7 +73,7 @@
                                     <li class="delete-post-icon">
                                         <fmt:message key="confirm.delete.room" var="confirmMsg"/>
                                         <a title="<fmt:message key='delete.room'/>" href="#"
-                                           onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}')) {document.getElementById('jahia-forum-room-delete-${room.identifier}').submit();} return false;"><span><fmt:message
+                                           onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-delete-${room.identifier}").submit();} return false;'><span><fmt:message
                                                 key='delete.room'/></span></a></li>
                                 </c:if>
                                 <c:if test="${jcr:hasPermission(room, 'moderatePost') && jcr:hasPermission(room, 'jcr:write')}">
@@ -82,14 +82,14 @@
                                             <li class="delete-post-icon">
                                                 <fmt:message key="confirm.moderate.room" var="confirmMsg"/>
                                                 <a title="<fmt:message key='moderate.room'/>" href="#"
-                                                   onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}')) {document.getElementById('jahia-forum-room-moderate-${room.identifier}').submit();} return false;"><span><fmt:message
+                                                   onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-moderate-${room.identifier}").submit();} return false;'><span><fmt:message
                                                         key='moderate.room'/></span></a></li>
                                         </c:when>
                                         <c:otherwise>
                                             <li class="delete-post-icon">
                                                 <fmt:message key="confirm.unmoderate.room" var="confirmMsg"/>
                                                 <a title="<fmt:message key='unmoderate.room'/>" href="#"
-                                                   onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}')) {document.getElementById('jahia-forum-room-unmoderate-${room.identifier}').submit();} return false;"><span><fmt:message
+                                                   onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-unmoderate-${room.identifier}").submit();} return false;'><span><fmt:message
                                                         key='unmoderate.room'/></span></a></li>
                                         </c:otherwise>
                                     </c:choose>
@@ -166,7 +166,7 @@
                                         <fmt:message key='confirm.delete.section' var="confirmMsg"/>
                                         <li class="delete-post-icon"><a title="<fmt:message key='delete.section'/>"
                                                                         href="#"
-                                                                        onclick="if (window.confirm('${functions:escapeJavaScript(confirmMsg)}')) { document.getElementById('jahia-forum-section-delete-${section.identifier}').submit(); } return false;"><span><fmt:message
+                                                                        onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) { document.getElementById("jahia-forum-section-delete-${section.identifier}").submit(); } return false;'><span><fmt:message
                                                 key='delete.section'/></span></a></li>
                                     </ul>
                                     </c:if>
