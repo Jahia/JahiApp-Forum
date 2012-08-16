@@ -56,11 +56,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author : rincevent
- * @since : JAHIA 6.1
- *        Created : 3 juin 2010
+ * @author rincevent
+ * Created : 3 juin 2010
  */
 public class IncrementViewCount extends Action {
     private transient static Logger logger = org.slf4j.LoggerFactory.getLogger(IncrementViewCount.class);

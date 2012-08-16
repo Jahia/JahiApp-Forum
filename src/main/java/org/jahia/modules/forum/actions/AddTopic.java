@@ -62,11 +62,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
- * Created by IntelliJ IDEA.
- *
- * @author : rincevent
- * @since : JAHIA 6.1
- *        Created : 3 juin 2010
+ * @author rincevent
+ * Created : 3 juin 2010
  */
 public class AddTopic extends Action {
     private transient static Logger logger = org.slf4j.LoggerFactory.getLogger(AddTopic.class);
