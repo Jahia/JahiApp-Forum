@@ -6,12 +6,20 @@
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="uiComponents" uri="http://www.jahia.org/tags/uiComponentsLib" %>
-
+<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
+<%--@elvariable id="out" type="java.io.PrintWriter"--%>
+<%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
+<%--@elvariable id="scriptInfo" type="java.lang.String"--%>
+<%--@elvariable id="workspace" type="java.lang.String"--%>
+<%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
+<%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
+<%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:include view="hidden.header"/>
 <c:set var="linked" value="${uiComponents:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 <c:if test="${not empty linked}">
+    <c:set value="${jcr:getParentOfType(renderContext.mainResource.node, 'jmix:moderated')}" var="moderated"/>
     <c:choose>
-        <c:when test="${jcr:isNodeType(linked, 'jmix:moderated') or jcr:hasPermission(linked, 'moderatePost')}">
+        <c:when test="${empty moderated or jcr:hasPermission(moderated, 'moderatePost')}">
             <jcr:sql var="numberOfPostsQuery"
                      sql="select [jcr:uuid] from [jnt:post] as p  where isdescendantnode(p,['${linked.path}'])"/>
             <jcr:sql var="numberOfThreadsQuery"
