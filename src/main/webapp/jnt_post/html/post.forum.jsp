@@ -118,14 +118,14 @@
     <h4 class="forum-h4-first">${title.string}</h4>
 
     <p class="forum-author">
-        <c:if test="${renderContext.user.name ne 'guest'}">
+        <c:if test="${currentNode.properties['jcr:createdBy'].string ne 'guest'}">
             <fmt:message key="by"/>
             <strong>&nbsp;<a
                     href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>">${createdBy.string}</a></strong>&nbsp;&raquo;&nbsp;<span class="timestamp">
             <fmt:formatDate
                     value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
             </span> </c:if>
-        <c:if test="${renderContext.user.name eq 'guest'}">
+        <c:if test="${currentNode.properties['jcr:createdBy'].string eq 'guest'}">
             <fmt:message key="by"/>
             <strong>&nbsp;${createdBy.string}</strong>&nbsp;&raquo;&nbsp;<span class="timestamp">
             <fmt:formatDate

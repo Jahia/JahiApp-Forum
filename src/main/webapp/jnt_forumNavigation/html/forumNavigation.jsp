@@ -104,22 +104,29 @@
                 <%--<dd class="topics">30</dd>--%>
                 <dd class="topics">${numberOfTopics}</dd>
                 <dd class="posts">${numberOfPosts}</dd>
-                <dd class="lastpost">
-                  <c:if test="${numberOfPosts > 0}"> <span> <dfn>
-                    <fmt:message key="last.post"/>
-                    </dfn>
-                    <fmt:message key="by"/>
-                    <a href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>"><img height="9"
-                                                                                                            width="11"
-                                                                                                            title="View the latest post"
-                                                                                                            alt="View the latest post"
-                                                                                                            src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${createdBy.string} </a><br/>
-                    <fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
-                    </span> </c:if>
-                </dd>
+                  <dd class="lastpost">
+                      <c:if test="${numberOfPosts > 0}">
+                          <span> <dfn>
+                              <fmt:message key="last.post"/>
+                          </dfn>
+                              <fmt:message key="by"/>
+                              <c:if test="${createdBy.string eq 'guest'}">
+                                  ${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                              </c:if>
+                              <c:if test="${createdBy.string ne 'guest'}">
+                                  <a href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>"><img height="9"
+                                                                                                                                                                                                width="11"
+                                                                                                                                                                                                title="View the latest post"
+                                                                                                                                                                                                alt="View the latest post"
+                                                                                                                                                                                                src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${createdBy.string} </a><br/>
+                                  <fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                              </c:if>
+                          </span>
+                      </c:if>
+                  </dd>
               </dl>
             </li>
-            <c:set var="found" value="true"/>
+              <c:set var="found" value="true"/>
           </c:if>
         </c:forEach>
         <c:if test="${not found}">
