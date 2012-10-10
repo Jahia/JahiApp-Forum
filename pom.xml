@@ -49,7 +49,7 @@
     <groupId>org.jahia.modules</groupId>
     <artifactId>forum</artifactId>
     <name>Jahia Forum</name>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
         <maven3.site.plugin.version>3.0</maven3.site.plugin.version>
