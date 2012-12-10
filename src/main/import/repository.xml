@@ -122,7 +122,7 @@
             <j:translation_en jcr:language="en" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
             <j:translation_it jcr:language="it" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
             <j:translation_es jcr:language="es" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
-            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: liste des fils de discussion"/>
+            <j:translation_fr jcr:language="fr" jcr:primaryType="jnt:translation" jcr:title="Forum: Discussions"/>
             <j:translation_pt jcr:language="pt" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
             <j:translation_de jcr:language="de" jcr:primaryType="jnt:translation" jcr:title="Forum: list of topics"/>
           </jnt:topicList>

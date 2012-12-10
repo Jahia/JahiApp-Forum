@@ -46,6 +46,8 @@ import org.jahia.bin.Action;
 import org.jahia.bin.ActionResult;
 import org.jahia.bin.Jahia;
 import org.jahia.bin.Render;
+import org.jahia.params.ProcessingContext;
+import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.JCRSessionWrapper;
@@ -53,6 +55,8 @@ import org.jahia.services.mail.MailService;
 import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.URLResolver;
+import org.jahia.services.usermanager.JahiaUser;
+import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
 import org.jahia.utils.Url;
 import org.slf4j.Logger;
@@ -63,7 +67,7 @@ import java.util.*;
 
 /**
  * @author rincevent
- * Created : 3 juin 2010
+ *         Created : 3 juin 2010
  */
 public class AddTopic extends Action {
     private transient static Logger logger = org.slf4j.LoggerFactory.getLogger(AddTopic.class);
@@ -71,11 +75,16 @@ public class AddTopic extends Action {
     private String templatePath;
     private boolean emailNotification;
     private boolean toAdministratorMail;
+    private boolean sendNotificationsToContributors;
     private String email_from;
     private String email_to;
 
     public void setToAdministratorMail(boolean toAdministratorMail) {
         this.toAdministratorMail = toAdministratorMail;
+    }
+
+    public void setSendNotificationsToContributors(boolean sendNotificationsToContributors) {
+        this.sendNotificationsToContributors = sendNotificationsToContributors;
     }
 
     public void setEmailNotification(boolean emailNotification) {
@@ -106,39 +115,76 @@ public class AddTopic extends Action {
             String topicTitle = parameters.get("jcr:title").get(0);
             node.checkout();
             node = node.addNode(JCRContentUtils.generateNodeName(topicTitle, 32), "jnt:topic");
-            node.setProperty("topicSubject",topicTitle);
+            node.setProperty("topicSubject", topicTitle);
         }
-        JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post","",false);
+        JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post", "", false);
         if (node.isNodeType("jnt:topic")) {
-            node.setProperty("topicLastContributionDate",newNode.getProperty("jcr:created").getDate());
+            node.setProperty("topicLastContributionDate", newNode.getProperty("jcr:created").getDate());
         }
 
         if (!session.getUser().getUsername().equals(Constants.GUEST_USERNAME)) {
             List<String> roles = Arrays.asList("owner");
-            newNode.grantRoles("u:"+session.getUser().getUsername(), new HashSet<String>(roles));
+            newNode.grantRoles("u:" + session.getUser().getUsername(), new HashSet<String>(roles));
         }
         jcrSessionWrapper.save();
+        //String nodeType = node.getPrimaryNodeTypeName();
+        //logger.debug("current node type is " + nodeType);
 
-        if (emailNotification){
+
+        if (emailNotification) {
+            List<String> emails = new ArrayList<String>();
+
             // Prepare mail to be sent :
-            String to = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator():email_to;
-            Map<String,Object> bindings = new HashMap<String,Object>();
-            bindings.put("formNode",node);
-            bindings.put("formNewNode",newNode);
-            bindings.put("ParentFormNode",node.getParent());
-            bindings.put("submitter",renderContext.getUser());
-            bindings.put("date",new DateTool());
+            String to = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator() : email_to;
+            emails.add(to);
+
+            Map<String, Object> bindings = new HashMap<String, Object>();
+            bindings.put("formNode", node);
+            bindings.put("formNewNode", newNode);
+            bindings.put("ParentFormNode", node.getParent());
+            bindings.put("submitter", renderContext.getUser());
+            bindings.put("date", new DateTool());
             bindings.put("submissionDate", Calendar.getInstance());
             bindings.put("locale", resource.getLocale());
             bindings.put("formURL", Url.getServer(req) + Jahia.getContextPath() + node.getUrl());
 
-            try{
-                mailService.sendMessageWithTemplate(templatePath,bindings,to,email_from,"","",resource.getLocale(),"Jahia Forum");
-                logger.info("Post Creation is sent by e-mail to "+ to);
-            }catch (Exception e){
-                logger.info("Couldn't sent forum email notification: " + e);
+            if (sendNotificationsToContributors) {
+                // iterate the childs and get posts creator's emails
+                List<JCRNodeWrapper> postList = JCRContentUtils.getChildrenOfType(node, "jnt:post");
+                Iterator<JCRNodeWrapper> postIterator = postList.iterator();
+                JahiaUserManagerService userManager = ServicesRegistry.getInstance().getJahiaUserManagerService();
 
+                String currentUser = session.getUser().getUsername();
+                while (postIterator.hasNext()) {
+                    JCRNodeWrapper post = postIterator.next();
+                    String creator = post.getCreationUser();
+                    String email = null;
+                    if (creator != null) {
+                        JahiaUser user = userManager.lookupUser(creator);
+                        if (user != null && !(creator).equals(currentUser)) {
+                            boolean emailNotificationsDisabled = "true".equals(user.getProperty("emailNotificationsDisabled"));
+                            if (!emailNotificationsDisabled) {
+                                email = user.getProperty("j:email");
+                                if (email != null && !emails.contains(email) && email.length() > 5) {
+                                    emails.add(email);
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            Iterator<String> emailIterator = emails.iterator();
+            while (emailIterator.hasNext()) {
+                to = emailIterator.next();
+                try {
+                    mailService.sendMessageWithTemplate(templatePath, bindings, to, email_from, "", "", resource.getLocale(), "Jahia Forum");
+                    logger.info("Post Creation is sent by e-mail to " + to);
+                } catch (Exception e) {
+                    logger.info("Couldn't sent forum email notification: " + e);
+
+                }
+            }
+
         }
 
         // Remove any existing REDIRECT_TO parameter to be sure to go to node.getPath

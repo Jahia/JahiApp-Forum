@@ -8,11 +8,13 @@
         <property name="requireAuthenticatedUser" value="false"/>
         <property name="mailService" ref="MailService"/>
         <property name="templatePath" value="/META-INF/mails/templates/postAdded.vm"/>
-        <property name="emailNotification" value="false"/>
+        <property name="emailNotification" value="true"/>
         <property name="toAdministratorMail" value="false"/>
         <property name="email_from" value="from@jahia.com"/>
         <property name="email_to" value="to@jahia.com"/>
+        <property name="sendNotificationsToContributors" value="false"/>
     </bean>
+
 
     <bean class="org.jahia.modules.forum.actions.IncrementViewCount" >
         <property name="name" value="IncrementView"/>
