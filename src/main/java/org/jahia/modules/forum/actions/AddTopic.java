@@ -71,41 +71,6 @@ import java.util.*;
  */
 public class AddTopic extends Action {
     private transient static Logger logger = org.slf4j.LoggerFactory.getLogger(AddTopic.class);
-    private MailService mailService;
-    private String templatePath;
-    private boolean emailNotification;
-    private boolean toAdministratorMail;
-    private boolean sendNotificationsToContributors;
-    private String email_from;
-    private String email_to;
-
-    public void setToAdministratorMail(boolean toAdministratorMail) {
-        this.toAdministratorMail = toAdministratorMail;
-    }
-
-    public void setSendNotificationsToContributors(boolean sendNotificationsToContributors) {
-        this.sendNotificationsToContributors = sendNotificationsToContributors;
-    }
-
-    public void setEmailNotification(boolean emailNotification) {
-        this.emailNotification = emailNotification;
-    }
-
-    public void setEmail_from(String email_from) {
-        this.email_from = email_from;
-    }
-
-    public void setEmail_to(String email_to) {
-        this.email_to = email_to;
-    }
-
-    public void setMailService(MailService mailService) {
-        this.mailService = mailService;
-    }
-
-    public void setTemplatePath(String templatePath) {
-        this.templatePath = templatePath;
-    }
 
     @Override
     public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session, Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
@@ -127,65 +92,6 @@ public class AddTopic extends Action {
             newNode.grantRoles("u:" + session.getUser().getUsername(), new HashSet<String>(roles));
         }
         jcrSessionWrapper.save();
-        //String nodeType = node.getPrimaryNodeTypeName();
-        //logger.debug("current node type is " + nodeType);
-
-
-        if (emailNotification) {
-            List<String> emails = new ArrayList<String>();
-
-            // Prepare mail to be sent :
-            String to = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator() : email_to;
-            emails.add(to);
-
-            Map<String, Object> bindings = new HashMap<String, Object>();
-            bindings.put("formNode", node);
-            bindings.put("formNewNode", newNode);
-            bindings.put("ParentFormNode", node.getParent());
-            bindings.put("submitter", renderContext.getUser());
-            bindings.put("date", new DateTool());
-            bindings.put("submissionDate", Calendar.getInstance());
-            bindings.put("locale", resource.getLocale());
-            bindings.put("formURL", Url.getServer(req) + Jahia.getContextPath() + node.getUrl());
-
-            if (sendNotificationsToContributors) {
-                // iterate the childs and get posts creator's emails
-                List<JCRNodeWrapper> postList = JCRContentUtils.getChildrenOfType(node, "jnt:post");
-                Iterator<JCRNodeWrapper> postIterator = postList.iterator();
-                JahiaUserManagerService userManager = ServicesRegistry.getInstance().getJahiaUserManagerService();
-
-                String currentUser = session.getUser().getUsername();
-                while (postIterator.hasNext()) {
-                    JCRNodeWrapper post = postIterator.next();
-                    String creator = post.getCreationUser();
-                    String email = null;
-                    if (creator != null) {
-                        JahiaUser user = userManager.lookupUser(creator);
-                        if (user != null && !(creator).equals(currentUser)) {
-                            boolean emailNotificationsDisabled = "true".equals(user.getProperty("emailNotificationsDisabled"));
-                            if (!emailNotificationsDisabled) {
-                                email = user.getProperty("j:email");
-                                if (email != null && !emails.contains(email) && email.length() > 5) {
-                                    emails.add(email);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            Iterator<String> emailIterator = emails.iterator();
-            while (emailIterator.hasNext()) {
-                to = emailIterator.next();
-                try {
-                    mailService.sendMessageWithTemplate(templatePath, bindings, to, email_from, "", "", resource.getLocale(), "Jahia Forum");
-                    logger.info("Post Creation is sent by e-mail to " + to);
-                } catch (Exception e) {
-                    logger.info("Couldn't sent forum email notification: " + e);
-
-                }
-            }
-
-        }
 
         // Remove any existing REDIRECT_TO parameter to be sure to go to node.getPath
         parameters.remove(Render.REDIRECT_TO);

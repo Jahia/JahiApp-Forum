@@ -6,18 +6,30 @@
     <bean class="org.jahia.modules.forum.actions.AddTopic" >
         <property name="name" value="addTopic"/>
         <property name="requireAuthenticatedUser" value="false"/>
-        <property name="mailService" ref="MailService"/>
-        <property name="templatePath" value="/META-INF/mails/templates/postAdded.vm"/>
-        <property name="emailNotification" value="true"/>
-        <property name="toAdministratorMail" value="false"/>
-        <property name="email_from" value="from@jahia.com"/>
-        <property name="email_to" value="to@jahia.com"/>
-        <property name="sendNotificationsToContributors" value="false"/>
     </bean>
-
 
     <bean class="org.jahia.modules.forum.actions.IncrementViewCount" >
         <property name="name" value="IncrementView"/>
         <property name="requireAuthenticatedUser" value="false"/>
     </bean>
+
+    <bean class="org.jahia.services.content.rules.ModuleGlobalObject">
+        <property name="globalRulesObject">
+            <map>
+                <entry key="forumRuleService">
+                    <bean class="org.jahia.modules.forum.rules.ForumRuleService">
+                        <property name="mailService" ref="MailService"/>
+                        <property name="templatePath" value="/META-INF/mails/templates/postAdded.vm"/>
+                        <property name="toAdministratorMail" value="false"/>
+                        <property name="email_from" value="from@jahia.com"/>
+                        <property name="email_to" value="to@jahia.com"/>
+                        <property name="sendNotificationsToContributors" value="true"/>
+                        <property name="sendSpamNotificationsToAdministrator" value="true" />
+                        <property name="forumHostUrlPart" value="http://localhost:8080"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
 </beans>
