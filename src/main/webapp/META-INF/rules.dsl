@@ -1,0 +1,1 @@
+[consequence][]Send a new {node} notification to all posters=forumRuleService.sendNotificationToPosters({node}, drools);

@@ -1,5 +1,5 @@
 ###############################################################################
-package org.jahia.modules.event.rules.forum
+package org.jahia.modules.forum.rules
 
 #list any import classes here.
 import org.jahia.services.content.*
@@ -17,18 +17,22 @@ global Service service
 global Logger logger
 global SearchURLService urlService
 global RenderContext renderContext
+global ForumRuleService forumRuleService
 ###############################################################################
 
 rule "New post"
+    salience 0
     when
         A new node is created
             - it has the type jnt:post
         The node has a parent
     then
         Set the property jcr:lastModified of the parent with the current time
+        Send a new node notification to all posters
 end
 
 rule "Moderate post"
+    salience 0
     when
         A property moderated has been set on a node
             - the node has the type jnt:post
