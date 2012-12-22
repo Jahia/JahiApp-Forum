@@ -114,7 +114,6 @@ public class ForumRuleService {
             bindings.put("date", new DateTool());
             bindings.put("esc", new EscapeTool());
             bindings.put("submissionDate", Calendar.getInstance());
-            bindings.put("locale", defaultLocale);
             bindings.put("spamDetected", spamDetected);
             bindings.put("formURL", forumHostUrlPart + Jahia.getContextPath() + node.getParent().getUrl());
 
@@ -157,6 +156,7 @@ public class ForumRuleService {
                         if (preferredLocales.containsKey(destinationEmail)) {
                             userLocale = preferredLocales.get(destinationEmail);
                         }
+                        bindings.put("locale", userLocale);
                         mailService.sendMessageWithTemplate(templatePath, bindings, destinationEmail, email_from, "", "", userLocale, "Jahia Forum");
                         logger.info("Post creation notification sent by e-mail to " + destinationEmail + " using locale " + userLocale);
                     } catch (Exception e) {
