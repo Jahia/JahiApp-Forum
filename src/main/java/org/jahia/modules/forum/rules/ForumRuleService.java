@@ -115,6 +115,7 @@ public class ForumRuleService {
             bindings.put("esc", new EscapeTool());
             bindings.put("submissionDate", Calendar.getInstance());
             bindings.put("locale", defaultLocale);
+            bindings.put("spamDetected", spamDetected);
             bindings.put("formURL", forumHostUrlPart + Jahia.getContextPath() + node.getParent().getUrl());
 
             Map<String, Locale> preferredLocales = new HashMap<String,Locale>();

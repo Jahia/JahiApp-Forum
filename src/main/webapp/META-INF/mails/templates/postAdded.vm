@@ -1,7 +1,11 @@
 #* @vtlvariable name="bundle" type="java.util.ResourceBundle" *#
 <html>
 <body>
-<h3>${esc.html($bundle.getString("mail.jahia.forum.notification"))}</h3>
+#if ($spamDetected)
+<h3>${esc.html($bundle.getString("mail.jahia.spam.notification"))}</h3>
+#else
+<h3>${esc.html($bundle.getString("mail.jahia.notification"))}</h3>
+#end
 <p>
     <b>${esc.html($bundle.getString("mail.post.created.on"))}:</b> ${date.format("full","short",$submissionDate,$locale)}<br>
     <b>${esc.html($bundle.getString("mail.by"))}: </b>${esc.html($submitter.getName())}<br>
@@ -14,7 +18,11 @@
     <b>${esc.html($bundle.getString("mail.content"))}:</b>
 </p>
 <p>
+#if ($formNewNode.hasProperty("content"))
     ${formNewNode.getProperty("content").string}
+#else
+    ${esc.html($bundle.getString("mail.empty.content"))}
+#end
 </p>
 </body>
 </html>
