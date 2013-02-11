@@ -31,10 +31,10 @@
     <c:set value="${jcr:getParentOfType(renderContext.mainResource.node, 'jmix:moderated')}" var="moderated"/>
     <c:choose>
         <c:when test="${empty moderated or jcr:hasPermission(moderated, 'moderatePost')}">
-            <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[jcr:createdBy] = '${user.name}'"/>
+            <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[jcr:createdBy] = '${user.name}' order by p.[jcr:created] desc"/>
         </c:when>
         <c:otherwise>
-           <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[pseudo] = '${user.name}'"/>
+           <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[pseudo] = '${user.name}' order by p.[jcr:created] desc"/>
         </c:otherwise>
     </c:choose>
     <query:definition var="listQuery" statement="${userPostList}" limit="${limit.long}"  />
