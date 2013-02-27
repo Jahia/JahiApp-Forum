@@ -115,7 +115,7 @@
 
 <template:option node="${currentNode}" view="hidden.plusone_minorone" nodetype="jmix:rating"/>
 
-    <h4 class="forum-h4-first">${title.string}</h4>
+    <h4 class="forum-h4-first"><c:out value="${title.string}" /></h4>
 
     <p class="forum-author">
         <c:if test="${currentNode.properties['jcr:createdBy'].string ne 'guest'}">
@@ -135,10 +135,10 @@
     <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
         <div class="content editablePost" jcr:id="content"
              id="edit${currentNode.identifier}"
-             jcr:url="<c:url value='${url.base}${currentNode.path}'/>">${content.string}</div>
+             jcr:url="<c:url value='${url.base}${currentNode.path}'/>"><c:out value="${content.string}" /></div>
     </c:if>
     <c:if test="${not jcr:hasPermission(currentNode, 'editPost')}">
-        <div class="content">${content.string}</div>
+        <div class="content"><c:out value="${content.string}" /></div>
     </c:if>
 </div>
 

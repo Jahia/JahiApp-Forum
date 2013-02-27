@@ -94,12 +94,11 @@
                         </span></a> </li>
                     </ul>
                   </c:if>
-                  <a class="forum-title"
-                                                     href="<c:url value='${url.base}${section.path}.html'/>">
-                  <jcr:nodeProperty
-                                        node="${section}" name="jcr:title"/>
+                  <a class="forum-title" href="<c:url value='${url.base}${section.path}.html'/>">
+                  <jcr:nodeProperty node="${section}" name="jcr:title" var="sectionTitle" />
+                  <c:out value="${sectionTitle.string}" />
                   </a> <br/>
-                  <p> ${section.properties['jcr:description'].string} </p>
+                  <p> <c:out value="${section.properties['jcr:description'].string}" /> </p>
                 </dt>
                 <%--<dd class="topics">30</dd>--%>
                 <dd class="topics">${numberOfTopics}</dd>
