@@ -37,7 +37,7 @@
     function jahiaForumQuote(targetId, quotedText) {
         var targetArea = document.getElementById(targetId);
         if (targetArea) {
-            targetArea.value = targetArea.value + '\n<blockquote>\n' + quotedText + '\n</blockquote>\n' + '\n<br />\n';
+            targetArea.value = targetArea.value + '\n<blockquote>\n' + escape(quotedText) + '\n</blockquote>\n' + '\n<br />\n';
         }
         return false;
     }
@@ -117,7 +117,7 @@
                                 ${fn:escapeXml(sessionScope.formDatas['content'][0])}
                             </c:if>
                             <c:if test="${(not empty reply.properties['content'].string) && (not empty param.quote)}">
-                            <blockquote>${reply.properties['content'].string}</blockquote><br />
+                            <blockquote><c:out value="${reply.properties['content'].string}" /></blockquote><br />
                             <p>
                             </p>
                         </c:if></textarea>

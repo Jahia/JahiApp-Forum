@@ -95,7 +95,7 @@
                                     </c:choose>
                                 </c:if>
                             </ul>
-                            <a href="<c:url value='${url.base}${room.path}.html'/>">${room.properties['jcr:title'].string}</a>
+                            <a href="<c:url value='${url.base}${room.path}.html'/>"><c:out value="${room.properties['jcr:title'].string}" /></a>
                             </dt>
                             <dd class="topics">
                                 <fmt:message key="topics"/>
@@ -172,8 +172,8 @@
                                     </c:if>
                                     <a class="forum-title"
                                        href="<c:url value='${url.base}${section.path}.html'/>">
-                                        <jcr:nodeProperty
-                                                node="${section}" name="jcr:title"/>
+                                       <jcr:nodeProperty node="${section}" name="jcr:title" var="sectionTitle" />
+                                       <c:out value="${sectionTitle.string}" />
                                     </a> <br/>
 
                                     <p>${fn:escapeXml(section.properties['jcr:description'].string)}</p>

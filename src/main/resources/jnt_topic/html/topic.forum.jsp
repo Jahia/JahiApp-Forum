@@ -53,10 +53,10 @@
     </ul></c:if>
     <c:if test="${numberOfPosts > 0}">
         <a class="forum-title"
-           href="<c:url value='${url.base}${currentNode.path}.html'/>">${currentNode.properties.topicSubject.string}</a>
+           href="<c:url value='${url.base}${currentNode.path}.html'/>"><c:out value="${currentNode.properties.topicSubject.string}" /></a>
     </c:if>
     <c:if test="${numberOfPosts == 0}">
-        ${currentNode.properties.topicSubject.string}
+        <c:out value="${currentNode.properties.topicSubject.string}" />
     </c:if>
         <br/>
     <p>
