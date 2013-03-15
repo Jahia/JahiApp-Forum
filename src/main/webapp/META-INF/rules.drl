@@ -23,6 +23,7 @@ global ForumRuleService forumRuleService
 rule "New post"
     salience 0
     when
+        Not in operation import
         A new node is created
             - it has the type jnt:post
         The node has a parent
@@ -34,6 +35,7 @@ end
 rule "Moderate post"
     salience 0
     when
+        Not in operation import
         A property moderated has been set on a node
             - the node has the type jnt:post
         The node has a parent
