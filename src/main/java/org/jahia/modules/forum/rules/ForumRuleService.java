@@ -71,6 +71,10 @@ public class ForumRuleService {
     }
 
     public void sendNotificationToPosters(AddedNodeFact nodeFact, KnowledgeHelper drools) throws RepositoryException {
+        if (!mailService.isEnabled()) {
+            // mail service is not enabled -> skip sending notifications
+            return;
+        }
         if (logger.isDebugEnabled()) {
             logger.debug("Sending notification to posters of a new node {}", nodeFact.getPath());
         }
