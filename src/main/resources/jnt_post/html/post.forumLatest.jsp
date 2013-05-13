@@ -92,7 +92,7 @@
              jcr:url="<c:url value='${url.base}${currentNode.path}'/>">${content.string} </div>
     </c:if>
     <c:if test="${not jcr:hasPermission(currentNode, 'editPost')}">
-        <div class="content"><c:out value="${content.string}" /></div>
+        <div class="content">${content.string}</div>
     </c:if>
 </div>
 <div class="user-posts">
