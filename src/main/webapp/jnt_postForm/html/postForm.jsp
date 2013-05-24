@@ -33,15 +33,6 @@
 <uiComponents:ckeditor selector="jahia-forum-thread-${currentNode.UUID}"/>
 
 <c:set var="linked" value="${uiComponents:getBindedComponentPath(currentNode, renderContext, 'j:bindedComponent')}"/>
-<script type="text/javascript">
-    function jahiaForumQuote(targetId, quotedText) {
-        var targetArea = document.getElementById(targetId);
-        if (targetArea) {
-            targetArea.value = targetArea.value + '\n<blockquote>\n' + escape(quotedText) + '\n</blockquote>\n' + '\n<br />\n';
-        }
-        return false;
-    }
-</script>
 
 <a name="threadPost"></a>
 <c:if test="${!empty param.reply}">
@@ -122,6 +113,9 @@
                             </p>
                         </c:if></textarea>
                     </p>
+                    <script>
+                        initValue =  document.getElementById("jahia-forum-thread-${currentNode.UUID}").value
+                    </script>
                     <c:if test="${not renderContext.loggedIn}">
                         <p class="field">
                             <label for="newTopic_captcha">Captcha</label><br /> <template:captcha/>
@@ -133,7 +127,7 @@
                         </p>
                     </c:if>
                     <p class="forum_button">
-                        <input type="reset" value="<fmt:message key='label.reset'/>" class="button" tabindex="3"/>
+                        <input type="reset" value="<fmt:message key='label.reset'/>" class="button" tabindex="3" onclick="CKEDITOR.instances['jahia-forum-thread-${currentNode.UUID}'].setData(initValue);"/>
                         <input type="submit" value="<fmt:message key='label.submit'/>" class="button" tabindex="4"/>
                     </p>
                 </fieldset>
