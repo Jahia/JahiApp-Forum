@@ -21,7 +21,7 @@ global ForumRuleService forumRuleService
 ###############################################################################
 
 rule "New post"
-    salience 0
+    salience -10
     when
         Not in operation import
         A new node is created
