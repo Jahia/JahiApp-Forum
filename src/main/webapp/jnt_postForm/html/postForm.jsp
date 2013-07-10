@@ -37,6 +37,7 @@
 <a name="threadPost"></a>
 <c:if test="${!empty param.reply}">
     <jcr:node uuid="${param.reply}" var="reply"/>
+    <template:addCacheDependency node="${reply}"/>
 </c:if>
 <jcr:node var="linkedNode" path="${linked}"/>
 <c:if test="${not empty linkedNode}">
