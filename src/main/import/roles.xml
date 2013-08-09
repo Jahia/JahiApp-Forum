@@ -9,8 +9,10 @@
     <jahiapp-user jcr:primaryType="jnt:role"
                   j:permissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createSection"/>
 
-    <editor-in-chief jcr:primaryType="jnt:role"
+    <editor jcr:primaryType="jnt:role">
+        <editor-in-chief jcr:primaryType="jnt:role"
                      j:permissions="/permissions/actions/forum"
                      j:privilegedAccess="true"
             />
+    </editor>
 </roles>
