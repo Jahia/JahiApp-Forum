@@ -4,14 +4,14 @@
        xmlns:j="http://www.jahia.org/jahia/1.0"
        xmlns:jnt="http://www.jahia.org/jahia/nt/1.0">
     <reader jcr:primaryType="jnt:role"
-             j:permissions="/permissions/actions/forum/createTopic /permissions/actions/forum/createPost"/>
+             j:permissionNames="createTopic createPost"/>
 
     <jahiapp-user jcr:primaryType="jnt:role"
-                  j:permissions="/permissions/actions/forum/createRoom /permissions/actions/forum/createSection"/>
+                  j:permissionNames="createRoom createSection"/>
 
     <editor jcr:primaryType="jnt:role">
         <editor-in-chief jcr:primaryType="jnt:role"
-                     j:permissions="/permissions/actions/forum"
+                     j:permissionNames="forum"
                      j:privilegedAccess="true"
             />
     </editor>

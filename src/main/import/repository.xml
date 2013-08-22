@@ -25,7 +25,7 @@
                                     <pageForm class="forum-Form"
                                   i18npages="false"
                                   j:requiredMode="live"
-                                  j:requiredPermissions="#/permissions/actions/forum/createRoom #/permissions/actions/forum/createTopic"
+                                  j:requiredPermissionNames="createRoom createTopic"
                                   jcr:mixinTypes="jmix:requiredPermissions"
                                   jcr:primaryType="jnt:pageFormCreation"
                                   stayOnPage="true"
@@ -62,7 +62,7 @@
                                     <pageForm class="forum-Form"
                                   i18npages="false"
                                   j:requiredMode="live"
-                                  j:requiredPermissions="#/permissions/actions/forum/createSection #/permissions/actions/forum/createTopic"
+                                  j:requiredPermissionNames="createSection createTopic"
                                   jcr:mixinTypes="jmix:requiredPermissions"
                                   jcr:primaryType="jnt:pageFormCreation"
                                   stayOnPage="true"
@@ -92,7 +92,7 @@
                                 <add-a-new-topic aClass="forum-post-icon"
                                       divClass="forum-buttons"
                                       j:bindedComponent="/modules/forum/templates/forum-base/forum"
-                                      j:requiredPermissions="#/permissions/actions/forum/createTopic"
+                                      j:requiredPermissionNames="createTopic"
                                       jcr:mixinTypes="jmix:requiredPermissions"
                                       jcr:primaryType="jnt:componentLink"
                                       targetTemplate="forum-newTopic">
@@ -127,7 +127,7 @@
                                 <add-a-new-topic-1 aClass="forum-post-icon"
                                         divClass="forum-buttons"
                                         j:bindedComponent="/modules/forum/templates/forum-base/forum"
-                                        j:requiredPermissions="#/permissions/actions/forum/createTopic"
+                                        j:requiredPermissionNames="createTopic"
                                         jcr:mixinTypes="jmix:requiredPermissions"
                                         jcr:primaryType="jnt:componentLink"
                                         targetTemplate="forum-newTopic">
@@ -153,7 +153,7 @@
                                jcr:primaryType="jnt:contentList">
                                 <post j:bindedComponent="/modules/forum/templates/forum-base/forum-newTopic"
                            j:requiredMode="live"
-                           j:requiredPermissions="#/permissions/actions/forum/createTopic"
+                           j:requiredPermissionNames="createTopic"
                            jcr:mixinTypes="jmix:requiredPermissions"
                            jcr:primaryType="jnt:postForm">
                                     <j:translation_en jcr:language="en"
@@ -180,7 +180,7 @@
                                 <add-a-new-post-1 aClass="forum-post-icon"
                                        divClass="forum-buttons"
                                        j:bindedComponent="/modules/forum/templates/forum-base/forum-topic"
-                                       j:requiredPermissions="#/permissions/actions/forum/createPost"
+                                       j:requiredPermissionNames="createPost"
                                        jcr:mixinTypes="jmix:requiredPermissions"
                                        jcr:primaryType="jnt:componentLink"
                                        targetTemplate="forum-topic-newPost">
@@ -216,7 +216,7 @@
                                 <add-a-new-post aClass="forum-post-icon"
                                      divClass="forum-buttons"
                                      j:bindedComponent="/modules/forum/templates/forum-base/forum-topic"
-                                     j:requiredPermissions="#/permissions/actions/forum/createPost"
+                                     j:requiredPermissionNames="createPost"
                                      jcr:mixinTypes="jmix:requiredPermissions"
                                      jcr:primaryType="jnt:componentLink"
                                      targetTemplate="forum-topic-newPost">
@@ -249,7 +249,7 @@
                                   jcr:primaryType="jnt:contentList">
                                     <post j:bindedComponent="/modules/forum/templates/forum-base/forum-topic-newPost"
                               j:requiredMode="live"
-                              j:requiredPermissions="#/permissions/actions/forum/createPost"
+                              j:requiredPermissionNames="createPost"
                               jcr:mixinTypes="jmix:requiredPermissions"
                               jcr:primaryType="jnt:postForm">
                                         <j:translation_en jcr:language="en"
