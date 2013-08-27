@@ -1,5 +1,6 @@
 package org.jahia.modules.forum.rules;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.tools.generic.DateTool;
 import org.apache.velocity.tools.generic.EscapeTool;
 import org.drools.core.spi.KnowledgeHelper;
@@ -37,6 +38,7 @@ public class ForumRuleService {
     private String email_to;
     private String forumHostUrlPart;
     private boolean sendSpamNotificationsToAdministrator;
+    private String administratorSpamNotificationEmail;
 
     public void setToAdministratorMail(boolean toAdministratorMail) {
         this.toAdministratorMail = toAdministratorMail;
@@ -70,6 +72,10 @@ public class ForumRuleService {
         this.sendSpamNotificationsToAdministrator = sendSpamNotificationsToAdministrator;
     }
 
+    public void setAdministratorSpamNotificationEmail(String administratorSpamNotificationEmail) {
+        this.administratorSpamNotificationEmail = administratorSpamNotificationEmail;
+    }
+
     public void sendNotificationToPosters(AddedNodeFact nodeFact, KnowledgeHelper drools) throws RepositoryException {
         if (!mailService.isEnabled()) {
             // mail service is not enabled -> skip sending notifications
@@ -98,6 +104,9 @@ public class ForumRuleService {
             // Prepare mail to be sent :
             if ((spamDetected && sendSpamNotificationsToAdministrator) || (!spamDetected)) {
                 String administratorEmail = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator() : email_to;
+                if (spamDetected && StringUtils.isNotEmpty(administratorSpamNotificationEmail)) {
+                    administratorEmail = administratorSpamNotificationEmail;
+                }
                 emails.add(administratorEmail);
             }
 
