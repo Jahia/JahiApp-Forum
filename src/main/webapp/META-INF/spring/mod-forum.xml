@@ -19,13 +19,14 @@
                 <entry key="forumRuleService">
                     <bean class="org.jahia.modules.forum.rules.ForumRuleService">
                         <property name="mailService" ref="MailService"/>
-                        <property name="templatePath" value="/META-INF/mails/templates/postAdded.vm"/>
-                        <property name="toAdministratorMail" value="false"/>
-                        <property name="email_from" value="from@jahia.com"/>
-                        <property name="email_to" value="to@jahia.com"/>
-                        <property name="sendNotificationsToContributors" value="true"/>
-                        <property name="sendSpamNotificationsToAdministrator" value="true" />
-                        <property name="forumHostUrlPart" value="http://localhost:8080"/>
+                        <property name="templatePath" value="${forumMailNotificationTemplatePath:/META-INF/mails/templates/postAdded.vm}"/>
+                        <property name="toAdministratorMail" value="${forumAlwaysNotifyAdministrator:false}"/>
+                        <property name="email_from" value="${forumMailNotificationFrom:from@jahia.com}"/>
+                        <property name="email_to" value="${forumAdministratorEmail:to@jahia.com}"/>
+                        <property name="sendNotificationsToContributors" value="${forumSendNotificationToContributors:true}"/>
+                        <property name="sendSpamNotificationsToAdministrator" value="${forumSpamNotificationsToAdmin:true}" />
+                        <property name="forumHostUrlPart" value="${forumHostUrlPart:http://localhost:8080}"/>
+                        <property name="administratorSpamNotificationEmail" value="${forumAdministratorSpamEmail:forum-spam@jahia.com}" />
                     </bean>
                 </entry>
             </map>
