@@ -1,4 +1,4 @@
-    <%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
+<%@ taglib prefix="jcr" uri="http://www.jahia.org/tags/jcr" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="functions" uri="http://www.jahia.org/tags/functions" %>
@@ -26,11 +26,11 @@
         <jcr:nodeProperty node="${currentNode}" name="jcr:createdBy" var="createdBy"/>
         <jcr:node var="userNode" path="${functions:lookupUser(createdBy.string).localPath}"/>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select [jcr:uuid] from [jnt:post] as p where p.[jcr:createdBy] = '${createdBy.string}'"/>
+                 sql="select [jcr:uuid] from [jnt:post] as p where p.[jcr:createdBy] = '${functions:sqlencode(createdBy.string)}'"/>
     </c:when>
     <c:otherwise>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select [jcr:uuid] from [jnt:post] as p where p.[pseudo] = '${createdBy.string}'"/>
+                 sql="select [jcr:uuid] from [jnt:post] as p where p.[pseudo] = '${functions:sqlencode(createdBy.string)}'"/>
     </c:otherwise>
 </c:choose>
 
@@ -62,7 +62,7 @@
 
 <template:option node="${currentNode}" view="hidden.plusone_minorone_form" nodetype="jmix:rating"/>
 <div class="forum-postbody">
-	<div class="arrow-left"></div>
+    <div class="arrow-left"></div>
     <ul class="forum-profile-icons">
         <%--<c:if test="${jcr:hasPermission(currentNode, 'reportPost')}">--%>
         <%--<li class="forum-report-icon"><a title="<fmt:message key='report.post'/>" href="#"><span><fmt:message key='report.post'/></span></a></li>--%>
@@ -70,7 +70,7 @@
         <c:if test="${jcr:hasPermission(currentNode, 'createPost')}">
             <li class="forum-quote-icon">
                 <a title="<fmt:message key='reply'/>"
-                href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}'/>">
+                   href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}'/>">
                     <span>
                         <fmt:message key='reply'/>
                     </span>
@@ -81,7 +81,7 @@
         <c:if test="${jcr:hasPermission(currentNode, 'createPost')}">
             <li class="forum-quote-icon">
                 <a title="<fmt:message key='reply.quote'/>"
-                href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}&quote=true'/>">
+                   href="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-topic-newPost.html?reply=${currentNode.UUID}&quote=true'/>">
                     <span>
                         <fmt:message key='reply.quote'/>
                     </span>
@@ -93,8 +93,8 @@
             <li class="delete-post-icon">
                 <fmt:message key="confirm.delete.post" var="confirmMsg"/>
                 <a title="<fmt:message key='delete.post'/>" href="#delete"
-                                onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
-                                        { document.getElementById("jahia-forum-post-delete-${currentNode.UUID}").submit(); } return false;'>
+                   onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
+                           { document.getElementById("jahia-forum-post-delete-${currentNode.UUID}").submit(); } return false;'>
                     <span><fmt:message key='delete.post'/></span>
                 </a>
             </li>
@@ -113,7 +113,7 @@
     </ul>
 
 
-<template:option node="${currentNode}" view="hidden.plusone_minorone" nodetype="jmix:rating"/>
+    <template:option node="${currentNode}" view="hidden.plusone_minorone" nodetype="jmix:rating"/>
 
     <h4 class="forum-h4-first"><c:out value="${title.string}" /></h4>
 
