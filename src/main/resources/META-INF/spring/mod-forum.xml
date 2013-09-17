@@ -19,16 +19,6 @@
                 <entry key="forumRuleService">
                     <bean class="org.jahia.modules.forum.rules.ForumRuleService">
                         <property name="mailService" ref="MailService"/>
-<<<<<<< HEAD
-                        <property name="templatePath" value="${forumMailNotificationTemplatePath:/META-INF/mails/templates/postAdded.vm}"/>
-                        <property name="toAdministratorMail" value="${forumAlwaysNotifyAdministrator:false}"/>
-                        <property name="email_from" value="${forumMailNotificationFrom:from@jahia.com}"/>
-                        <property name="email_to" value="${forumAdministratorEmail:to@jahia.com}"/>
-                        <property name="sendNotificationsToContributors" value="${forumSendNotificationToContributors:true}"/>
-                        <property name="sendSpamNotificationsToAdministrator" value="${forumSpamNotificationsToAdmin:true}" />
-                        <property name="forumHostUrlPart" value="${forumHostUrlPart:http://localhost:8080}"/>
-                        <property name="administratorSpamNotificationEmail" value="${forumAdministratorSpamEmail:forum-spam@jahia.com}" />
-=======
                         <property name="templatePath"
                                   value="${forumMailNotificationTemplatePath:/META-INF/mails/templates/postAdded.vm}"/>
                         <property name="toAdministratorMail" value="${forumAlwaysNotifyAdministrator:false}"/>
@@ -41,7 +31,6 @@
                         <property name="forumHostUrlPart" value="${forumHostUrlPart:http://localhost:8080}"/>
                         <property name="administratorSpamNotificationEmail"
                                   value="${forumAdministratorSpamEmail:forum-spam@jahia.com}"/>
->>>>>>> remotes/origin/JAHIA-JBPM6-BRANCH
                     </bean>
                 </entry>
             </map>
