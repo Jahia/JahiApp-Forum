@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean class="org.jahia.modules.forum.actions.AddTopic" >
+    <bean class="org.jahia.modules.forum.actions.AddTopic">
         <property name="name" value="addTopic"/>
         <property name="requireAuthenticatedUser" value="false"/>
     </bean>
 
-    <bean class="org.jahia.modules.forum.actions.IncrementViewCount" >
+    <bean class="org.jahia.modules.forum.actions.IncrementViewCount">
         <property name="name" value="IncrementView"/>
         <property name="requireAuthenticatedUser" value="false"/>
     </bean>
@@ -19,6 +19,7 @@
                 <entry key="forumRuleService">
                     <bean class="org.jahia.modules.forum.rules.ForumRuleService">
                         <property name="mailService" ref="MailService"/>
+<<<<<<< HEAD
                         <property name="templatePath" value="${forumMailNotificationTemplatePath:/META-INF/mails/templates/postAdded.vm}"/>
                         <property name="toAdministratorMail" value="${forumAlwaysNotifyAdministrator:false}"/>
                         <property name="email_from" value="${forumMailNotificationFrom:from@jahia.com}"/>
@@ -27,6 +28,20 @@
                         <property name="sendSpamNotificationsToAdministrator" value="${forumSpamNotificationsToAdmin:true}" />
                         <property name="forumHostUrlPart" value="${forumHostUrlPart:http://localhost:8080}"/>
                         <property name="administratorSpamNotificationEmail" value="${forumAdministratorSpamEmail:forum-spam@jahia.com}" />
+=======
+                        <property name="templatePath"
+                                  value="${forumMailNotificationTemplatePath:/META-INF/mails/templates/postAdded.vm}"/>
+                        <property name="toAdministratorMail" value="${forumAlwaysNotifyAdministrator:false}"/>
+                        <property name="email_from" value="${forumMailNotificationFrom:from@jahia.com}"/>
+                        <property name="email_to" value="${forumAdministratorEmail:to@jahia.com}"/>
+                        <property name="sendNotificationsToContributors"
+                                  value="${forumSendNotificationToContributors:true}"/>
+                        <property name="sendSpamNotificationsToAdministrator"
+                                  value="${forumSpamNotificationsToAdmin:true}"/>
+                        <property name="forumHostUrlPart" value="${forumHostUrlPart:http://localhost:8080}"/>
+                        <property name="administratorSpamNotificationEmail"
+                                  value="${forumAdministratorSpamEmail:forum-spam@jahia.com}"/>
+>>>>>>> remotes/origin/JAHIA-JBPM6-BRANCH
                     </bean>
                 </entry>
             </map>

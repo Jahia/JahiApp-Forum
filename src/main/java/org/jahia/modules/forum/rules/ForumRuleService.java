@@ -3,7 +3,7 @@ package org.jahia.modules.forum.rules;
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.tools.generic.DateTool;
 import org.apache.velocity.tools.generic.EscapeTool;
-import org.drools.spi.KnowledgeHelper;
+import org.drools.core.spi.KnowledgeHelper;
 import org.jahia.bin.Jahia;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRContentUtils;
@@ -130,7 +130,7 @@ public class ForumRuleService {
             bindings.put("spamDetected", spamDetected);
             bindings.put("formURL", forumHostUrlPart + Jahia.getContextPath() + node.getParent().getUrl());
 
-            Map<String, Locale> preferredLocales = new HashMap<String,Locale>();
+            Map<String, Locale> preferredLocales = new HashMap<String, Locale>();
 
             if (sendNotificationsToContributors && !spamDetected) {
                 // iterate the childs and get posts creator's emails
