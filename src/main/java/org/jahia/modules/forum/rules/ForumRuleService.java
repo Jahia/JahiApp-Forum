@@ -103,7 +103,7 @@ public class ForumRuleService {
 
             // Prepare mail to be sent :
             if ((spamDetected && sendSpamNotificationsToAdministrator) || (!spamDetected)) {
-                String administratorEmail = toAdministratorMail ? SettingsBean.getInstance().getMail_administrator() : email_to;
+                String administratorEmail = toAdministratorMail ? mailService.getSettings().getTo() : email_to;
                 if (spamDetected && StringUtils.isNotEmpty(administratorSpamNotificationEmail)) {
                     administratorEmail = administratorSpamNotificationEmail;
                 }
