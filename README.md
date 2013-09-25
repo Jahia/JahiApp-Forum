@@ -50,6 +50,6 @@ You will have to add these parameters in the jahia.properties file as they are n
 You should change the following settings : forumMailNotificationFrom, forumAdministratorEmail and forumHostUrlPart
 at a minimum.
 
-It is also recommended that you install the following module : https://github.com/shyrkov/jahia-spam-filtering
+It is also recommended that you install the following module : https://github.com/Jahia/jahia-spam-filtering
 This module will integrate with the Akismet spam detection service to detect and blacklist spam messages.
 
