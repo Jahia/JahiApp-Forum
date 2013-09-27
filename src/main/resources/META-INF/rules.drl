@@ -1,7 +1,6 @@
-###############################################################################
 package org.jahia.modules.forum.rules
 
-#list any import classes here.
+// list any import classes here.
 import org.jahia.services.content.*
 import org.jahia.services.content.rules.*
 import org.jahia.services.render.*
@@ -11,14 +10,13 @@ import org.slf4j.Logger
 
 expander rules.dsl
 
-#declare any global variables here
+// declare any global variables here
 global User user
 global Service service
 global Logger logger
 global SearchURLService urlService
 global RenderContext renderContext
 global ForumRuleService forumRuleService
-###############################################################################
 
 rule "New post"
     salience -10
