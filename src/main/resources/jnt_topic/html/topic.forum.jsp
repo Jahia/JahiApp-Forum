@@ -8,11 +8,11 @@
 <c:choose>
     <c:when test="${not jcr:hasPermission(currentNode, 'moderatePost') and not empty moderated}">
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and post.[moderated]='true' and (post.['jcr:mixinTypes'] not like 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and post.[moderated]='true' and (not post.['jcr:mixinTypes'] = 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
     </c:when>
     <c:otherwise>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and (post.['jcr:mixinTypes'] not like 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
+                 sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${currentNode.path}']) and (not post.['jcr:mixinTypes'] = 'jmix:spamFilteringSpamDetected') order by post.[jcr:lastModified] desc"/>
     </c:otherwise>
 </c:choose>
 
