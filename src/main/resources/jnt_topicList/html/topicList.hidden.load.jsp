@@ -37,5 +37,5 @@
     <c:set target="${moduleMap}" property="emptyListMessage" value="No topic found" />
     <c:set target="${moduleMap}" property="listQuery" value="${listQuery}" />
     <c:set target="${moduleMap}" property="subNodesView" value="${currentNode.properties['j:subNodesView'].string}" />
-    <template:addCacheDependency flushOnPathMatchingRegexp="\Q${linked.path}\E/[^/]*"/>
+    <template:addCacheDependency flushOnPathMatchingRegexp="\\\\Q${linked.path}\\\\E/[^/]*"/>
 </c:if>

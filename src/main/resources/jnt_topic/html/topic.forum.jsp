@@ -89,5 +89,5 @@
 <%--</li>--%>
 <%--</c:if>--%>
 <%--<c:if test="${numberOfPosts == 0}">--%>
-    <%--<template:addCacheDependency flushOnPathMatchingRegexp="\Q${currentNode.path}\E/.*"/>--%>
+    <%--<template:addCacheDependency flushOnPathMatchingRegexp="\\\\Q${currentNode.path}\\\\E/.*"/>--%>
 <%--</c:if>--%>
