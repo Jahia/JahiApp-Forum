@@ -121,7 +121,7 @@
         <c:if test="${currentNode.properties['jcr:createdBy'].string ne 'guest'}">
             <fmt:message key="by"/>
             <strong>&nbsp;<a
-                    href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>">${createdBy.string}</a></strong>&nbsp;&raquo;&nbsp;<span class="timestamp">
+                    href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>">${createdBy.string}</a></strong>&nbsp;&raquo;&nbsp;<span class="timestamp">
             <fmt:formatDate
                     value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
             </span> </c:if>

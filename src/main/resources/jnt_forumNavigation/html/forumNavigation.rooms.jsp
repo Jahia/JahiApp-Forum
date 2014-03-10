@@ -191,7 +191,7 @@
                                                 </c:if>
                                                 <c:if test="${createdBy.string ne 'guest'}">
                                                     <a
-                                                            href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${currentNode.resolveSite.identifier}'/>"><img height="9"
+                                                            href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
                                                                                                                                                                                                                        width="11"
                                                                                                                                                                                                                        title="View the latest post"
                                                                                                                                                                                                                        alt="View the latest post"
