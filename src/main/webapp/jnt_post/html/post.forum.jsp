@@ -26,11 +26,11 @@
         <jcr:nodeProperty node="${currentNode}" name="jcr:createdBy" var="createdBy"/>
         <jcr:node var="userNode" path="${functions:lookupUser(createdBy.string).localPath}"/>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select [jcr:uuid] from [jnt:post] as p where p.[jcr:createdBy] = '${createdBy.string}'"/>
+                 sql="select [jcr:uuid] from [jnt:post] as p where p.[jcr:createdBy] = '${functions:sqlencode(createdBy.string)}'"/>
     </c:when>
     <c:otherwise>
         <jcr:sql var="numberOfPostsQuery"
-                 sql="select [jcr:uuid] from [jnt:post] as p where p.[pseudo] = '${createdBy.string}'"/>
+                 sql="select [jcr:uuid] from [jnt:post] as p where p.[pseudo] = '${functions:sqlencode(createdBy.string)}'"/>
     </c:otherwise>
 </c:choose>
 
@@ -61,7 +61,7 @@
 </c:if>
 
 <template:option node="${currentNode}" view="hidden.plusone_minorone_form" nodetype="jmix:rating"/>
-<div class="forum-postbody">
+<div id="${currentNode.name}" class="forum-postbody">
 	<div class="arrow-left"></div>
     <ul class="forum-profile-icons">
         <%--<c:if test="${jcr:hasPermission(currentNode, 'reportPost')}">--%>
