@@ -5,4 +5,4 @@
 #* @vtlvariable name="bundle" type="java.util.ResourceBundle" *#
 #* @vtlvariable name="submitter" type="org.jahia.services.usermanager.JahiaUser" *#
 #* @vtlvariable name="date" type="org.apache.velocity.tools.generic.DateTool" *#
-#if($spamDetected)${bundle.getString("mail.jahia.spam.notification")}#{else}${bundle.getString("mail.jahia.notification")}#end: ${formNode.getProperty("topicSubject").string}
+#if($spamDetected)${bundle.getString("mail.jahia.spam.notification")}#{else}${bundle.getString("mail.jahia.notification")}#end: #if($formNode.hasProperty("topicSubject")) ${esc.html($formNode.getProperty("topicSubject").string)}#{else}${formNode.getName()}#end
