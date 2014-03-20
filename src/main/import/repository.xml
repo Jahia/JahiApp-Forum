@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<content xmlns:j="http://www.jahia.org/jahia/1.0"
-         xmlns:jcr="http://www.jcp.org/jcr/1.0"
-         xmlns:jmix="http://www.jahia.org/jahia/mix/1.0"
-         xmlns:jnt="http://www.jahia.org/jahia/nt/1.0">
+<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
     <modules jcr:primaryType="jnt:modules">
         <forum j:dependencies="default default-skins grid rating skins"
              j:installedModules="Forum Jahia"
+             j:modulePriority="0"
              j:moduleType="jahiapp"
              j:title="Jahia Forum"
              jcr:primaryType="jnt:module">
                 
+                <portlets jcr:primaryType="jnt:portletFolder"/>
+                <files jcr:primaryType="jnt:folder"/>
+                <contents jcr:primaryType="jnt:contentFolder"/>
                 <templates j:rootTemplatePath="/base" jcr:primaryType="jnt:templatesFolder">
+                    <files jcr:primaryType="jnt:folder"/>
+                    <contents jcr:primaryType="jnt:contentFolder"/>
                     <forum-base j:hiddenTemplate="false" jcr:primaryType="jnt:template">
                         <forum-home jcr:primaryType="jnt:pageTemplate">
                             <pagecontent jcr:primaryType="jnt:contentList">
@@ -304,17 +307,11 @@
                                   displayLinkOnCurrentPage="false"
                                   jcr:primaryType="jnt:pageBreadcrumb"/>
                             <pageTitle jcr:primaryType="jnt:pageTitle"/>
-                            <pagecontent j:allowedTypes="" jcr:primaryType="jnt:area"/>
+                            <pagecontent jcr:primaryType="jnt:area"/>
           </row-col1>
         </forum-base>
-                    <contents jcr:primaryType="jnt:contentFolder"/>
-                    <files jcr:primaryType="jnt:folder"/>
       </templates>
-                <portlets jcr:primaryType="jnt:portletFolder"/>
-                <files jcr:primaryType="jnt:folder"/>
-                <contents jcr:primaryType="jnt:contentFolder"/>
                 
     </forum>
     </modules>
-    
 </content>
