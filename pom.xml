@@ -49,7 +49,7 @@
     <groupId>org.jahia.modules</groupId>
     <artifactId>forum</artifactId>
     <name>Jahia Forum</name>
-    <version>1.8</version>
+    <version>1.8-SNAPSHOT</version>
     <packaging>war</packaging>
     <properties>
         <maven3.site.plugin.version>3.0</maven3.site.plugin.version>
@@ -61,17 +61,6 @@
         <url>scm:git:git@github.com:Jahia/JahiApp-Forum.git</url>
         <developerConnection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</developerConnection>
     </scm>
-
-    <distributionManagement>
-        <repository>
-            <id>jahia-releases</id>
-            <url>https://devtools.jahia.com/nexus/content/repositories/jahia-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>jahia-snapshots</id>
-            <url>https://devtools.jahia.com/nexus/content/repositories/jahia-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <repositories>
         <repository>
