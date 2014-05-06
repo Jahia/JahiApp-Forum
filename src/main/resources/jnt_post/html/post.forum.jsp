@@ -155,7 +155,7 @@
             <dd><strong>
                 <fmt:message key="registration.date"/>
             </strong>
-                <jcr:nodeProperty node="${userNode}" name="jcr:lastModified"
+                <jcr:nodeProperty node="${userNode}" name="jcr:created"
                                   var="userCreated"/>
                 <fmt:formatDate value="${userCreated.time}" type="date" dateStyle="medium"/>
             </dd>
