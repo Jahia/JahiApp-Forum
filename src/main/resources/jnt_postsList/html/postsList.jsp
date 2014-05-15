@@ -16,7 +16,7 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="forum.css"/>
 <template:addResources type="javascript" resources="jquery.min.js,jquery.cuteTime.js,jquery.jeditable.mini.js"/>
-<template:addResources type="javascript" resources="ckeditor/ckeditor.js,ckeditor/adapters/jquery.js"/>
+<template:addResources type="javascript" resources="ckeditor.js,adapters/jquery.js"/>
 <template:addResources type="javascript" resources="jquery.jeditable.ckeditor.js"/>
 
 <template:include view="hidden.header"/>
