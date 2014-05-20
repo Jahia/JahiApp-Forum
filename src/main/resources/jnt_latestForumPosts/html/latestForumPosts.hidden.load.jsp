@@ -17,7 +17,7 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="forum.css"/>
 <template:addResources type="javascript" resources="jquery.min.js,jquery.cuteTime.js,jquery.jeditable.mini.js"/>
-<utility:logger level="error" value="subNodesView : ${currentNode.properties['j:subNodesView'].string}"/>
+
 <c:set var="user" value="${uiComponents:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 
 <c:if test="${empty user or not jcr:isNodeType(user, 'jnt:user')}">
@@ -31,10 +31,11 @@
     <c:set value="${jcr:getParentOfType(renderContext.mainResource.node, 'jmix:moderated')}" var="moderated"/>
     <c:choose>
         <c:when test="${empty moderated or jcr:hasPermission(moderated, 'moderatePost')}">
-            <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[jcr:createdBy] = '${user.name}' order by p.[jcr:created] desc"/>
+            <c:set var="userPostList"
+                   value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${renderContext.site.path}') and p.[jcr:createdBy] = '${user.name}' order by p.[jcr:created] desc"/>
         </c:when>
         <c:otherwise>
-           <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${currentNode.resolveSite.path}') and p.[pseudo] = '${user.name}' order by p.[jcr:created] desc"/>
+           <c:set var="userPostList" value="select * from [jnt:post] as p where ISDESCENDANTNODE(p,'${renderContext.site.path}') and p.[pseudo] = '${user.name}' order by p.[jcr:created] desc"/>
         </c:otherwise>
     </c:choose>
     <query:definition var="listQuery" statement="${userPostList}" limit="${limit.long}"  />

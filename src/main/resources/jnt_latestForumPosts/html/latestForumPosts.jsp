@@ -14,7 +14,6 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="fileList.css, simpleList.css"/>
-<utility:logger level="error" value="Started latesForumPost"/>
 <template:include view="hidden.header"/>
 <h3><fmt:message key='list.of.posts'/></h3>
 <div class="posts" id="${currentNode.UUID}">
