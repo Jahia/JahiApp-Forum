@@ -133,7 +133,7 @@
                         </p>
                     </c:if>
                     <p class="forum_button">
-                        <input type="reset" value="<fmt:message key='label.reset'/>" class="button" tabindex="3"/>
+                        <input type="reset" value="<fmt:message key='label.reset'/>" class="button" tabindex="3" onclick="CKEDITOR.instances['jahia-forum-thread-${currentNode.UUID}'].setData('')"/>
                         <input type="submit" value="<fmt:message key='label.submit'/>" class="button" tabindex="4"/>
                     </p>
                 </fieldset>
