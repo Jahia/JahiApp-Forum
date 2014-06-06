@@ -176,15 +176,5 @@
         </dl>
     </c:otherwise>
 </c:choose>
-<div id="back2top${currentNode.identifier}" class="back2top"></div>
-<script type="text/javascript">
-    var allTags = document.body.getElementsByTagName('*');
-    for (var tg = 0; tg < allTags.length; tg++) {
-        var tag = allTags[tg];
-        if (tag.id || $('#back2top${currentNode.identifier}').size() == 0) {
-            $('#back2top${currentNode.identifier}').append($('<a>Top</a>').attr('title','Top').attr('class','top').attr('href','#'+tag.id));
-            break;
-        }
-    }
-</script>
+<div id="back2top${currentNode.identifier}" class="back2top"><a href="#forum-body" class="top" title="Top"><fmt:message key="posts.top" /></a></div>
 <div class="clear"></div>
