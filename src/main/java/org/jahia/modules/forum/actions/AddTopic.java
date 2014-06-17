@@ -110,7 +110,7 @@ public class AddTopic extends Action {
         if (!node.isNodeType("jnt:topic")) {
             String topicTitle = parameters.get("jcr:title").get(0);
             node.checkout();
-            node = node.addNode(JCRContentUtils.generateNodeName(topicTitle, 32), "jnt:topic");
+            node = node.addNode(JCRContentUtils.findAvailableNodeName(node, JCRContentUtils.generateNodeName(topicTitle, 32)), "jnt:topic");
             node.setProperty("topicSubject", topicTitle);
         }
         JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post", "", false);
