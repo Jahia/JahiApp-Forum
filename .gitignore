@@ -1,12 +1,7 @@
 /.classpath
 /.project
-<<<<<<< HEAD
-/.idea
-*.iml
-=======
 /.settings
 .idea
 *.iml
 *.ipr
 target
->>>>>>> 77777bf... QA-6481: fix double context in url of forum messages
