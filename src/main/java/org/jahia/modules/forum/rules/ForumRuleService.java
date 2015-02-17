@@ -213,10 +213,10 @@ public class ForumRuleService {
                 while (postIterator.hasNext()) {
                     JCRNodeWrapper post = postIterator.next();
                     String creator = post.getCreationUser();
-                    String email = null;
+                    String email;
                     if (creator != null) {
                         JahiaUser jahiaUser = userManager.lookupUser(creator);
-                        if (user != null && !(creator).equals(currentUser)) {
+                        if (jahiaUser != null && !(creator).equals(currentUser)) {
                             boolean emailNotificationsDisabled = "true".equals(jahiaUser.getProperty("emailNotificationsDisabled"));
                             if (!emailNotificationsDisabled) {
                                 email = jahiaUser.getProperty("j:email");
@@ -231,10 +231,8 @@ public class ForumRuleService {
                     }
                 }
             }
-            if (emails.size() > 0) {
-                Iterator<String> emailIterator = emails.iterator();
-                while (emailIterator.hasNext()) {
-                    String destinationEmail = emailIterator.next();
+            if (!emails.isEmpty()) {
+                for (String destinationEmail : emails) {
                     try {
                         Locale userLocale = defaultLocale;
                         if (preferredLocales.containsKey(destinationEmail)) {
