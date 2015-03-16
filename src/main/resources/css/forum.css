@@ -361,6 +361,10 @@ dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.t
 	clear:both;
 	overflow:hidden
 }
+ .noAnswer{
+     margin-top:10px;
+ }
+
  #forum-body .forum-buttons a,
  #forum-body .forum-buttons a:link,
  #forum-body .forum-buttons a:visited{
