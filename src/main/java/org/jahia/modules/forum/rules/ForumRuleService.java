@@ -75,14 +75,13 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.tools.generic.DateTool;
 import org.apache.velocity.tools.generic.EscapeTool;
 import org.drools.core.spi.KnowledgeHelper;
-import org.jahia.bin.Jahia;
 import org.jahia.registries.ServicesRegistry;
 import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.JCRNodeWrapper;
+import org.jahia.services.content.decorator.JCRUserNode;
 import org.jahia.services.content.rules.AddedNodeFact;
 import org.jahia.services.content.rules.User;
 import org.jahia.services.mail.MailService;
-import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
 import org.jahia.settings.SettingsBean;
 import org.jahia.utils.LanguageCodeConverters;
@@ -215,11 +214,11 @@ public class ForumRuleService {
                     String creator = post.getCreationUser();
                     String email;
                     if (creator != null) {
-                        JahiaUser jahiaUser = userManager.lookupUser(creator);
+                        JCRUserNode jahiaUser = userManager.lookupUser(creator);
                         if (jahiaUser != null && !(creator).equals(currentUser)) {
-                            boolean emailNotificationsDisabled = "true".equals(jahiaUser.getProperty("emailNotificationsDisabled"));
+                            boolean emailNotificationsDisabled = "true".equals(jahiaUser.getPropertyAsString("emailNotificationsDisabled"));
                             if (!emailNotificationsDisabled) {
-                                email = jahiaUser.getProperty("j:email");
+                                email = jahiaUser.getPropertyAsString("j:email");
                                 if (email != null && !emails.contains(email) && email.length() > 5) {
                                     emails.add(email);
                                     if (getPreferredLocale(jahiaUser) != null) {
@@ -254,9 +253,9 @@ public class ForumRuleService {
 
     }
 
-    private Locale getPreferredLocale(JahiaUser userNode) {
+    private Locale getPreferredLocale(JCRUserNode userNode) throws RepositoryException {
         Locale locale = null;
-        String property = userNode.getProperty("preferredLanguage");
+        String property = userNode.getPropertyAsString("preferredLanguage");
         if (property != null) {
             locale = LanguageCodeConverters.languageCodeToLocale(property);
         }
