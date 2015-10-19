@@ -187,7 +187,7 @@
                                                     key="last.post"/></dfn>
                                                 <fmt:message key="by"/>
                                                 <c:if test="${createdBy.string eq 'guest'}">
-                                                    ${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                                                    &nbsp;${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
                                                 </c:if>
                                                 <c:if test="${createdBy.string ne 'guest'}">
                                                     <a

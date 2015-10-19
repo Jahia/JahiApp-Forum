@@ -110,7 +110,7 @@
                           </dfn>
                               <fmt:message key="by"/>
                               <c:if test="${createdBy.string eq 'guest'}">
-                                  ${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                                  &nbsp;${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
                               </c:if>
                               <c:if test="${createdBy.string ne 'guest'}">
                                   <a href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
