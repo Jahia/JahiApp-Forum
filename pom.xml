@@ -96,7 +96,6 @@
         <configuration>
           <instructions>
             <Jahia-Depends>default,rating,grid,skins,default-skins</Jahia-Depends>
-            <Jahia-Module-Type>jahiapp</Jahia-Module-Type>
           </instructions>
         </configuration>
       </plugin>

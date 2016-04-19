@@ -4,7 +4,7 @@
         <forum j:dependencies="default default-skins grid rating skins"
              j:installedModules="Forum Jahia"
              j:modulePriority="0"
-             j:moduleType="jahiapp"
+             j:moduleType="module"
              j:title="Jahia Forum"
              jcr:primaryType="jnt:module">
                 
