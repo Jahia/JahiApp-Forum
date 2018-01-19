@@ -31,7 +31,7 @@
                           id="jahia-forum-room-delete-${room.identifier}">
                         <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-                            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+                        <%-- Define the output format for the newly created node by default html or by redirectTo--%>
                         <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
                         <input type="hidden" name="jcrMethodToCall" value="delete"/>
                     </form>
@@ -43,7 +43,7 @@
                           id="jahia-forum-room-moderate-${room.identifier}">
                         <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-                            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+                        <%-- Define the output format for the newly created node by default html or by redirectTo--%>
                         <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
                         <input type="hidden" name="jcrMethodToCall" value="put"/>
                         <input type="hidden" name="jcr:mixinTypes" value="jmix:moderated"/>
@@ -56,7 +56,7 @@
                           id="jahia-forum-room-unmoderate-${room.identifier}">
                         <input type="hidden" name="jcrRedirectTo"
                                value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-                            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+                        <%-- Define the output format for the newly created node by default html or by redirectTo--%>
                         <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
                         <input type="hidden" name="jcrMethodToCall" value="put"/>
                         <input type="hidden" name="jcrRemoveMixin" value="jmix:moderated"/>
@@ -68,34 +68,36 @@
                     <li class="forum-list-header">
                         <dl class="icon">
                             <dt>
-                            <ul class="forum-profile-icons">
-                                <c:if test="${jcr:hasPermission(room, 'deleteRoom')}">
-                                    <li class="delete-post-icon">
-                                        <fmt:message key="confirm.delete.room" var="confirmMsg"/>
-                                        <a title="<fmt:message key='delete.room'/>" href="#"
+                                <ul class="forum-profile-icons">
+                                    <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+                                        <c:if test="${jcr:hasPermission(room, 'deleteRoom')}">
+                                            <li class="delete-post-icon">
+                                                <fmt:message key="confirm.delete.room" var="confirmMsg"/>
+                                                <a title="<fmt:message key='delete.room'/>" href="#"
                                            onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-delete-${room.identifier}").submit();} return false;'><span><fmt:message
-                                                key='delete.room'/></span></a></li>
-                                </c:if>
-                                <c:if test="${jcr:hasPermission(room, 'moderatePost') && jcr:hasPermission(room, 'jcr:write')}">
-                                    <c:choose>
-                                        <c:when test="${not jcr:isNodeType(room, 'jmix:moderated')}">
-                                            <li class="delete-post-icon">
-                                                <fmt:message key="confirm.moderate.room" var="confirmMsg"/>
-                                                <a title="<fmt:message key='moderate.room'/>" href="#"
+                                                            key='delete.room'/></span></a></li>
+                                                    </c:if>
+                                                    <c:if test="${jcr:hasPermission(room, 'moderatePost') && jcr:hasPermission(room, 'jcr:write')}">
+                                                        <c:choose>
+                                                            <c:when test="${not jcr:isNodeType(room, 'jmix:moderated')}">
+                                                    <li class="delete-post-icon">
+                                                        <fmt:message key="confirm.moderate.room" var="confirmMsg"/>
+                                                        <a title="<fmt:message key='moderate.room'/>" href="#"
                                                    onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-moderate-${room.identifier}").submit();} return false;'><span><fmt:message
-                                                        key='moderate.room'/></span></a></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="delete-post-icon">
-                                                <fmt:message key="confirm.unmoderate.room" var="confirmMsg"/>
-                                                <a title="<fmt:message key='unmoderate.room'/>" href="#"
+                                                                    key='moderate.room'/></span></a></li>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                    <li class="delete-post-icon">
+                                                        <fmt:message key="confirm.unmoderate.room" var="confirmMsg"/>
+                                                        <a title="<fmt:message key='unmoderate.room'/>" href="#"
                                                    onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) {document.getElementById("jahia-forum-room-unmoderate-${room.identifier}").submit();} return false;'><span><fmt:message
-                                                        key='unmoderate.room'/></span></a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:if>
-                            </ul>
-                            <a href="<c:url value='${url.base}${room.path}.html'/>"><c:out value="${room.properties['jcr:title'].string}" /></a>
+                                                                    key='unmoderate.room'/></span></a></li>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:if>
+                                                </c:if>
+                                </ul>
+                                <a href="<c:url value='${url.base}${room.path}.html'/>"><c:out value="${room.properties['jcr:title'].string}" /></a>
                             </dt>
                             <dd class="topics">
                                 <fmt:message key="topics"/>
@@ -103,7 +105,7 @@
                             <dd class="topics">
                                 <fmt:message key="posts"/>
                             </dd>
-                                <%--<dd class="posts">View</dd>--%>
+                            <%--<dd class="posts">View</dd>--%>
                             <dd class="lastpost"><span><fmt:message key="lastPosts"/></span></dd>
                         </dl>
                     </li>
@@ -117,12 +119,12 @@
                                     <c:when test="${!jcr:isNodeType(room, 'jmix:moderated') or jcr:hasPermission(room, 'moderatePost')}">
                                         <jcr:sql var="numberOfPostsQuery"
                                                  sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}'])
-                                 order by post.[jcr:lastModified] desc"/>
+                                                 order by post.[jcr:lastModified] desc"/>
                                     </c:when>
                                     <c:otherwise>
                                         <jcr:sql var="numberOfPostsQuery"
                                                  sql="select * from [jnt:post] as post  where isdescendantnode(post, ['${section.path}'])
-                                 and post.['moderated']=true order by post.[jcr:lastModified] desc"/>
+                                                 and post.['moderated']=true order by post.[jcr:lastModified] desc"/>
                                     </c:otherwise>
                                 </c:choose>
                                 <c:set var="numberOfPosts" value="${numberOfPostsQuery.nodes.size}"/>
@@ -147,55 +149,59 @@
                                                           var="createdBy"/>
                                     </c:if>
                                 </c:forEach>
-                                <c:if test="${jcr:hasPermission(section, 'deleteSection')}">
-                                    <template:tokenizedForm>
-                                        <form action="<c:url value='${url.base}${section.path}'/>" method="post"
-                                              id="jahia-forum-section-delete-${section.identifier}">
-                                            <input type="hidden" name="jcrRedirectTo"
-                                                   value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
+                                <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+                                    <c:if test="${jcr:hasPermission(section, 'deleteSection')}">
+                                        <template:tokenizedForm>
+                                            <form action="<c:url value='${url.base}${section.path}'/>" method="post"
+                                                  id="jahia-forum-section-delete-${section.identifier}">
+                                                <input type="hidden" name="jcrRedirectTo"
+                                                       value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
                                                 <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-                                            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
-                                            <input type="hidden" name="jcrMethodToCall" value="delete"/>
-                                        </form>
-                                    </template:tokenizedForm>
+                                                <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                                                <input type="hidden" name="jcrMethodToCall" value="delete"/>
+                                            </form>
+                                        </template:tokenizedForm>
+                                    </c:if>
                                 </c:if>
                                 <dl class="icon iconsection">
                                     <dt title="posts">
-                                        <c:if test="${jcr:hasPermission(section, 'deleteSection')}">
-                                    <ul class="forum-profile-icons">
-                                        <fmt:message key='confirm.delete.section' var="confirmMsg"/>
-                                        <li class="delete-post-icon"><a title="<fmt:message key='delete.section'/>"
-                                                                        href="#"
+                                        <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+                                            <c:if test="${jcr:hasPermission(section, 'deleteSection')}">
+                                                <ul class="forum-profile-icons">
+                                                    <fmt:message key='confirm.delete.section' var="confirmMsg"/>
+                                                    <li class="delete-post-icon"><a title="<fmt:message key='delete.section'/>"
+                                                                                    href="#"
                                                                         onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}")) { document.getElementById("jahia-forum-section-delete-${section.identifier}").submit(); } return false;'><span><fmt:message
-                                                key='delete.section'/></span></a></li>
-                                    </ul>
-                                    </c:if>
-                                    <a class="forum-title"
-                                       href="<c:url value='${url.base}${section.path}.html'/>">
-                                       <jcr:nodeProperty node="${section}" name="jcr:title" var="sectionTitle" />
-                                       <c:out value="${sectionTitle.string}" />
-                                    </a> <br/>
+                                                                    key='delete.section'/></span></a></li>
+                                                </ul>
+                                            </c:if>
+                                        </c:if>
+                                        <a class="forum-title"
+                                           href="<c:url value='${url.base}${section.path}.html'/>">
+                                            <jcr:nodeProperty node="${section}" name="jcr:title" var="sectionTitle" />
+                                            <c:out value="${sectionTitle.string}" />
+                                        </a> <br/>
 
-                                    <p>${fn:escapeXml(section.properties['jcr:description'].string)}</p>
+                                        <p>${fn:escapeXml(section.properties['jcr:description'].string)}</p>
                                     </dt>
-                                        <%--<dd class="topics">30</dd>--%>
+                                    <%--<dd class="topics">30</dd>--%>
                                     <dd class="topics">${numberOfTopics}</dd>
                                     <dd class="posts">${numberOfPosts}</dd>
                                     <dd class="lastpost">
                                         <c:if test="${numberOfPosts > 0}">
                                             <span><dfn><fmt:message
-                                                    key="last.post"/></dfn>
-                                                <fmt:message key="by"/>
-                                                <c:if test="${createdBy.string eq 'guest'}">
+                                                        key="last.post"/></dfn>
+                                                    <fmt:message key="by"/>
+                                                    <c:if test="${createdBy.string eq 'guest'}">
                                                     &nbsp;${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
                                                 </c:if>
                                                 <c:if test="${createdBy.string ne 'guest'}">
                                                     <a
-                                                            href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
-                                                                                                                                                                                                                       width="11"
-                                                                                                                                                                                                                       title="View the latest post"
-                                                                                                                                                                                                                       alt="View the latest post"
-                                                                                                                                                                                                                       src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${fn:escapeXml(createdBy.string)}
+                                                        href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
+                                                                                                                                                                                                        width="11"
+                                                                                                                                                                                                        title="View the latest post"
+                                                                                                                                                                                                        alt="View the latest post"
+                                                                                                                                                                                                        src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${fn:escapeXml(createdBy.string)}
                                                     </a><br/>
                                                     <fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
                                                 </c:if>

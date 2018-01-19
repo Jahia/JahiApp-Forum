@@ -30,64 +30,67 @@
               id="jahia-forum-topic-delete-${currentNode.UUID}">
             <input type="hidden" name="jcrRedirectTo"
                    value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-                <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
             <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
             <input type="hidden" name="jcrMethodToCall" value="delete"/>
         </form>
     </template:tokenizedForm>
 </c:if>
 <%--<c:if test="${numberOfPosts > 0 or jcr:hasPermission(currentNode, 'deleteTopic')}">--%>
-    <%--<li class="row">--%>
-    <dl class="icon icontopic">
+<%--<li class="row">--%>
+<dl class="icon icontopic">
     <dt title="posts">
-        <c:if test="${jcr:hasPermission(currentNode, 'deleteTopic')}"><ul class="forum-profile-icons">
-            <li class="delete-post-icon">
-                <fmt:message key="confirm.delete.topic" var="confirmMsg"/>
-                <a title="<fmt:message key='delete.topic'/>" href="#"
-                                onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
+        <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+            <c:if test="${jcr:hasPermission(currentNode, 'deleteTopic')}"><ul class="forum-profile-icons">
+                    <li class="delete-post-icon">
+                        <fmt:message key="confirm.delete.topic" var="confirmMsg"/>
+                        <a title="<fmt:message key='delete.topic'/>" href="#"
+                           onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
                                         { document.getElementById("jahia-forum-topic-delete-${currentNode.UUID}").submit(); } return false;'>
-                    <span><fmt:message key='delete.topic'/></span>
-                </a>
-            </li>
+                            <span><fmt:message key='delete.topic'/></span>
+                        </a>
+                    </li>
 
-    </ul></c:if>
-    <c:if test="${numberOfPosts > 0}">
-        <a class="forum-title"
-           href="<c:url value='${url.base}${currentNode.path}.html'/>"><c:out value="${currentNode.properties.topicSubject.string}" /></a>
-    </c:if>
-    <c:if test="${numberOfPosts == 0}">
-        <c:out value="${currentNode.properties.topicSubject.string}" />
-    </c:if>
+                </ul>
+            </c:if>
+        </c:if>
+        <c:if test="${numberOfPosts > 0}">
+            <a class="forum-title"
+               href="<c:url value='${url.base}${currentNode.path}.html'/>"><c:out value="${currentNode.properties.topicSubject.string}" /></a>
+        </c:if>
+        <c:if test="${numberOfPosts == 0}">
+            <c:out value="${currentNode.properties.topicSubject.string}" />
+        </c:if>
         <br/>
-    <p>
-        <fmt:message key="mix_created.jcr_createdBy"/>&nbsp;${currentNode.properties["jcr:createdBy"].string}&nbsp;<fmt:formatDate value="${currentNode.properties['jcr:created'].time}" dateStyle="full" type="both"/>
-    </p>
+        <p>
+            <fmt:message key="mix_created.jcr_createdBy"/>&nbsp;${currentNode.properties["jcr:createdBy"].string}&nbsp;<fmt:formatDate value="${currentNode.properties['jcr:created'].time}" dateStyle="full" type="both"/>
+        </p>
 
     </dt>
-        <%--<dd class="topics">30</dd>--%>
+    <%--<dd class="topics">30</dd>--%>
     <dd class="posts">${numberOfPosts}</dd>
     <dd class="posts">${currentNode.properties["nbOfViews"].string}</dd>
-        <dd class="lastpost">
-            <c:if test="${numberOfPosts > 0}">
-                <span>
-                    <dfn><fmt:message key="last.post"/></dfn> <fmt:message key="by"/>
-                    <c:if test="${createdBy.string eq 'guest'}">
-                        &nbsp;${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
-                    </c:if>
-                    <c:if test="${createdBy.string ne 'guest'}">
-                        <a href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
-                                                                                                                                                                                      width="11"
-                                                                                                                                                                                      title="View the latest post"
-                                                                                                                                                                                      alt="View the latest post"
-                                                                                                                                                                                      src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${createdBy.string}
-                        </a><br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
-                    </c:if>
-                </span>
-            </c:if>
-        </dd>
-    </dl>
+    <dd class="lastpost">
+        <c:if test="${numberOfPosts > 0}">
+            <span>
+                <dfn><fmt:message key="last.post"/></dfn> <fmt:message key="by"/>
+                <c:if test="${createdBy.string eq 'guest'}">
+                    &nbsp;${createdBy.string} <br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                </c:if>
+                <c:if test="${createdBy.string ne 'guest'}">
+                    <a href="<c:url value='${url.base}${functions:lookupUser(createdBy.string).localPath}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"><img height="9"
+                                                                                                                                                                             width="11"
+                                                                                                                                                                             title="View the latest post"
+                                                                                                                                                                             alt="View the latest post"
+                                                                                                                                                                             src="<c:url value='${url.currentModule}/css/img/icon_topic_latest.gif'/>"/>${createdBy.string}
+                    </a><br/><fmt:formatDate value="${lastModified.time}" dateStyle="full" type="both"/>
+                </c:if>
+            </span>
+        </c:if>
+    </dd>
+</dl>
 <%--</li>--%>
 <%--</c:if>--%>
 <%--<c:if test="${numberOfPosts == 0}">--%>
-    <%--<template:addCacheDependency flushOnPathMatchingRegexp="\\\\Q${currentNode.path}\\\\E/.*"/>--%>
+<%--<template:addCacheDependency flushOnPathMatchingRegexp="\\\\Q${currentNode.path}\\\\E/.*"/>--%>
 <%--</c:if>--%>

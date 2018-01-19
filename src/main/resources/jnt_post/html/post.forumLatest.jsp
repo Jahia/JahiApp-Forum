@@ -29,7 +29,7 @@
         <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
               id="jahia-forum-post-delete-${currentNode.UUID}">
             <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"/>
-                <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
             <input type="hidden" name="jcrNewNodeOutputFormat" value=""/>
             <input type="hidden" name="jcrMethodToCall" value="delete"/>
         </form>
@@ -41,67 +41,70 @@
         <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
               id="jahia-forum-post-moderate-${currentNode.UUID}">
             <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}.forum-profile.html?jsite=${renderContext.site.identifier}'/>"/>
-                <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
             <input type="hidden" name="jcrNewNodeOutputFormat" value=""/>
             <input type="hidden" name="jcrMethodToCall" value="put"/>
             <input type="hidden" name="moderated" value="true"/>
         </form>
     </template:tokenizedForm>
 </c:if>
-
-<template:option node="${currentNode}" view="hidden.plusone_minorone_form" nodetype="jmix:rating"/>
+<c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+    <template:option node="${currentNode}" view="hidden.plusone_minorone_form" nodetype="jmix:rating"/>
+</c:if>
 <div class="forum-postbody">
-	<div class="arrow-left"></div>
+    <div class="arrow-left"></div>
     <ul class="forum-profile-icons">
-            <li class="forum-quote-icon">
-                <a title="<fmt:message key='view.thread'/>"
-                href="<c:url value='${url.base}${currentNode.parent.path}.html'/>">
-                    <span>
-                        <fmt:message key='view.thread'/>
-                    </span>
-                </a>
-            </li>
-        <c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">
-            <li class="delete-post-icon">
-                <fmt:message key="confirm.delete.post" var="confirmMsg"/>
-                <a title="<fmt:message key='delete.post'/>" href="#delete"
-                                onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
+        <li class="forum-quote-icon">
+            <a title="<fmt:message key='view.thread'/>"
+               href="<c:url value='${url.base}${currentNode.parent.path}.html'/>">
+                <span>
+                    <fmt:message key='view.thread'/>
+                </span>
+            </a>
+        </li>
+        <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+            <c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">
+                <li class="delete-post-icon">
+                    <fmt:message key="confirm.delete.post" var="confirmMsg"/>
+                    <a title="<fmt:message key='delete.post'/>" href="#delete"
+                       onclick='if (window.confirm("${functions:escapeJavaScript(confirmMsg)}"))
                                         { document.getElementById("jahia-forum-post-delete-${currentNode.UUID}").submit(); } return false;'>
-                    <span><fmt:message key='delete.post'/></span>
-                </a>
-            </li>
-        </c:if>
-        <c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated') and not currentNode.properties.moderated.boolean}">
+                        <span><fmt:message key='delete.post'/></span>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated') and not currentNode.properties.moderated.boolean}">
             <li class="delete-post-icon"><a title="<fmt:message key='moderate.post'/>" href="#moderate"
                                             onclick="document.getElementById('jahia-forum-post-moderate-${currentNode.UUID}').submit(); return false;"><span>
-        <fmt:message key="moderate.post"/>
+                            <fmt:message key="moderate.post"/>
         </span></a></li>
-        </c:if>
+            </c:if>
          <%-- <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
             <li class="edit-post-icon"><a title="<fmt:message key='edit.post'/>" href="#edit"
                                           onclick="$('#edit${currentNode.UUID}').dblclick(); return false;"><span><fmt:message
                     key="edit.post"/></span></a></li>
         </c:if>--%>
-    </ul>
+        </ul>
 
-    <h4 class="forum-h4-first"><c:out value="${title.string}" /></h4>
+        <h4 class="forum-h4-first"><c:out value="${title.string}" /></h4>
 
-    <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
-        <div class="content editablePost" jcr:id="content"
-             id="edit${currentNode.identifier}"
-             jcr:url="<c:url value='${url.base}${currentNode.path}'/>">${content.string} </div>
-    </c:if>
-    <c:if test="${not jcr:hasPermission(currentNode, 'editPost')}">
-        <div class="content">${content.string}</div>
+        <c:if test="${jcr:hasPermission(currentNode, 'editPost')}">
+            <div class="content editablePost" jcr:id="content"
+                 id="edit${currentNode.identifier}"
+                 jcr:url="<c:url value='${url.base}${currentNode.path}'/>">${content.string} </div>
+        </c:if>
+        <c:if test="${not jcr:hasPermission(currentNode, 'editPost')}">
+            <div class="content">${content.string}</div>
+        </c:if>
     </c:if>
 </div>
 <div class="user-posts">
-        <p class="forum-date">
+    <p class="forum-date">
         <span class="timestamp">
             <fmt:formatDate
-                    value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
+                value="${created.time}" pattern="yyyy/MM/dd HH:mm"/>
         </span>
-        </p>
+    </p>
 </div>
 <div id="back2top${currentNode.identifier}" class="back2top"><a href="#forum-body" class="top" title="Top"><fmt:message key="posts.top" /></a></div>
 <div class="clear"></div>
