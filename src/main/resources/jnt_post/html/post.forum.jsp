@@ -34,30 +34,32 @@
     </c:otherwise>
 </c:choose>
 
-
-<c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">
-    <template:tokenizedForm>
-        <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
-              id="jahia-forum-post-delete-${currentNode.UUID}">
-            <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
-            <input type="hidden" name="jcrMethodToCall" value="delete"/>
-        </form>
-    </template:tokenizedForm>
+<c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+    <c:if test="${jcr:hasPermission(currentNode, 'deletePost')}">
+        <template:tokenizedForm>
+            <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
+                  id="jahia-forum-post-delete-${currentNode.UUID}">
+                <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
+                <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+                <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                <input type="hidden" name="jcrMethodToCall" value="delete"/>
+            </form>
+        </template:tokenizedForm>
+    </c:if>
 </c:if>
-
-<c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated')}">
-    <template:tokenizedForm>
-        <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
-              id="jahia-forum-post-moderate-${currentNode.UUID}">
-            <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
-            <%-- Define the output format for the newly created node by default html or by redirectTo--%>
-            <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
-            <input type="hidden" name="jcrMethodToCall" value="put"/>
-            <input type="hidden" name="moderated" value="true"/>
-        </form>
-    </template:tokenizedForm>
+<c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
+    <c:if test="${jcr:hasPermission(currentNode.parent.parent, 'moderatePost') and jcr:isNodeType(currentNode, 'jmix:moderated')}">
+        <template:tokenizedForm>
+            <form action="<c:url value='${url.base}${currentNode.path}'/>" method="post"
+                  id="jahia-forum-post-moderate-${currentNode.UUID}">
+                <input type="hidden" name="jcrRedirectTo" value="<c:url value='${url.base}${renderContext.mainResource.node.path}'/>"/>
+                <%-- Define the output format for the newly created node by default html or by redirectTo--%>
+                <input type="hidden" name="jcrNewNodeOutputFormat" value="html"/>
+                <input type="hidden" name="jcrMethodToCall" value="put"/>
+                <input type="hidden" name="moderated" value="true"/>
+            </form>
+        </template:tokenizedForm>
+    </c:if>
 </c:if>
 <c:if test="${renderContext.readOnlyStatus eq 'OFF'}">
     <template:option node="${currentNode}" view="hidden.plusone_minorone_form" nodetype="jmix:rating"/>
