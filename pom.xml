@@ -60,7 +60,7 @@
     <connection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</connection>
     <developerConnection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</developerConnection>
     <url>scm:git:git@github.com:Jahia/JahiApp-Forum.git</url>
-    <tag>HEAD</tag>
+    <tag>3_x</tag>
   </scm>
   <repositories>
     <repository>
