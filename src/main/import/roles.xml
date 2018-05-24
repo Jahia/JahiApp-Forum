@@ -3,7 +3,11 @@
        xmlns:jcr="http://www.jcp.org/jcr/1.0"
        xmlns:j="http://www.jahia.org/jahia/1.0"
        xmlns:jnt="http://www.jahia.org/jahia/nt/1.0">
-    <reader jcr:primaryType="jnt:role"
+    <forum-contributor jcr:primaryType="jnt:role"
+                       j:permissionNames="createPost createTopic"
+                       j:roleGroup="live-role"/>
+
+    <forum-contributor jcr:primaryType="jnt:role"
              j:permissionNames="createTopic createPost"/>
 
     <jahiapp-user jcr:primaryType="jnt:role"

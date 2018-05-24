@@ -7,7 +7,7 @@
              j:moduleType="module"
              j:title="Jahia Forum"
              jcr:primaryType="jnt:module">
-                
+
                 <portlets jcr:primaryType="jnt:portletFolder"/>
                 <files jcr:primaryType="jnt:folder"/>
                 <contents jcr:primaryType="jnt:contentFolder"/>
@@ -405,7 +405,16 @@
                         </row-col1>
                     </forum-base>
                 </templates>
-                
+
             </forum>
     </modules>
+    <sites jcr:primaryType="jnt:virtualsitesFolder">
+        <j:acl j:inherit="true" jcr:primaryType="jnt:acl">
+            <GRANT_g_users j:aceType="GRANT"
+                           j:principal="g:users"
+                           j:protected="false"
+                           j:roles="forum-contributor"
+                           jcr:primaryType="jnt:ace"/>
+        </j:acl>
+    </sites>
 </content>
