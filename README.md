@@ -1,6 +1,8 @@
 JahiApp Forum
 =============
 
+This is a test branch
+
 Installation
 ------------
 
