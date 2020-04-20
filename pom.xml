@@ -62,6 +62,9 @@
     <url>scm:git:git@github.com:Jahia/JahiApp-Forum.git</url>
     <tag>HEAD</tag>
   </scm>
+  <properties>
+    <jahia-module-signature>MCsCEyjUwHG6BpbwIXKLW+ob7683ugoCFCvXuLdY/JClrDUSwIFSlbk1FKGs</jahia-module-signature>
+  </properties>
   <repositories>
     <repository>
       <releases>
