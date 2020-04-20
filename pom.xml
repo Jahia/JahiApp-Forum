@@ -28,7 +28,7 @@
         GNU General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with this program. If not, see <http://www.gnu.org/licenses/>.
+        along with this program. If not, see <http://www.gnu.org/licenses />.
 
 
         2/ JSEL - Commercial and Supported Versions of the program
@@ -60,7 +60,7 @@
     <connection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</connection>
     <developerConnection>scm:git:git@github.com:Jahia/JahiApp-Forum.git</developerConnection>
     <url>scm:git:git@github.com:Jahia/JahiApp-Forum.git</url>
-    <tag>HEAD</tag>
+    <tag>3_1_x</tag>
   </scm>
   <repositories>
     <repository>
