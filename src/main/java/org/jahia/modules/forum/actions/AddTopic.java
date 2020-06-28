@@ -86,7 +86,7 @@ public class AddTopic extends Action {
             node.setProperty("topicSubject", topicTitle);
         }
         JCRNodeWrapper newNode = createNode(req, parameters, jcrSessionWrapper.getNode(node.getPath()), "jnt:post", "", false);
-        if (node.isNodeType("jnt:topic")) {
+        if (node.isNodeType("startDate.time") && ! node.isNodeType("jmix:spamFilteringSpamDetected")) {
             node.setProperty("topicLastContributionDate", newNode.getProperty("jcr:created").getDate());
         }
 
