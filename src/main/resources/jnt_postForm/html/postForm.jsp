@@ -22,8 +22,7 @@
                 rules: {
                     'jcr:title': "required",
                     <c:if test="${not renderContext.loggedIn}">
-                    pseudo: "required",
-                    captcha: "required"
+                    pseudo: "required"
                     </c:if>
                 }
             });
@@ -117,16 +116,6 @@
                     <script>
                         initValue =  document.getElementById("jahia-forum-thread-${currentNode.UUID}").value
                     </script>
-                    <c:if test="${not renderContext.loggedIn}">
-                        <p class="field">
-                            <label for="newTopic_captcha">Captcha</label><br /> <template:captcha/>
-                           
-                            <c:if test="${not empty sessionScope.formError}">
-                                <label class="error">${sessionScope.formError}</label>
-                            </c:if>
-                            <input type="text" id="newTopic_captcha" name="jcrCaptcha"/>
-                        </p>
-                    </c:if>
                     <p class="forum_button">
                         <input type="reset" value="<fmt:message key='label.reset'/>" class="button" tabindex="3" onclick="CKEDITOR.instances['jahia-forum-thread-${currentNode.UUID}'].setData(initValue);"/>
                         <input type="submit" value="<fmt:message key='label.submit'/>" class="button" tabindex="4"/>
