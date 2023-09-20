@@ -65,6 +65,7 @@
   <properties>
     <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
     <jahia-module-signature>MCsCEyjUwHG6BpbwIXKLW+ob7683ugoCFCvXuLdY/JClrDUSwIFSlbk1FKGs</jahia-module-signature>
+    <jahia-depends>default,rating,grid,skins,default-skins,ckeditor</jahia-depends>
   </properties>
   <repositories>
     <repository>
@@ -92,16 +93,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Jahia-Depends>default,rating,grid,skins,default-skins</Jahia-Depends>
-          </instructions>
-        </configuration>
       </plugin>
     </plugins>
   </build>
